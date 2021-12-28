@@ -44,10 +44,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
+        http    .cors().and()
                 .csrf().disable()
                 .sessionManagement()
                     .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+
                 .and()
                 .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig),JwtUsernameAndPasswordAuthenticationFilter.class)

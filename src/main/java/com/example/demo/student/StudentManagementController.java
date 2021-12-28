@@ -8,6 +8,8 @@ import java.util.List;
 
 @RestController
 @RequestMapping("management/api/v1/students")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+
 public class StudentManagementController {
 
     private static final List<Student> STUDENTS = Arrays.asList(
@@ -20,6 +22,7 @@ public class StudentManagementController {
 
     @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMINTRAINEE')")
+    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     public List<Student> getAllStudents() {
         System.out.println("getAllStudents");
         return STUDENTS;
