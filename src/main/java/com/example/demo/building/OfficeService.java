@@ -18,31 +18,31 @@ public class OfficeService {
     private final OfficeRepository officeRepository;
 
     @GetMapping
-    public List<Office> getAllEmployees(){
+    public List<Office> getAllOffice(){
         return officeRepository.findAll();
     }
 
     @PostMapping
-    public Office saveEmployee(Office office){ //funktioniert auch als list
+    public Office saveOffice(Office office){ //funktioniert auch als list
         return officeRepository.save(office);
     }
 
     @GetMapping
-    public Office getEmployee(long id){
+    public Office getOffice(long id){
         return officeRepository.findById(id).orElse(null);
     }
 
     @GetMapping
-    public Office getEmployeeByEmail(String desciption){
+    public Office getOfficeByDescription(String desciption){
         return officeRepository.findByDescription(desciption);
     }
 
-    public String deleteEmployee(long id){
+    public String deleteOffice(long id){
         officeRepository.deleteById(id);
         return "office deleted";
     }
 
-    public Office updateEmployee(Office office){
+    public Office updateOffice(Office office){
         Office office1  = officeRepository.findById(office.getId()).orElse(null);
         office1.setDescription(office.getDescription());
         return officeRepository.save(office1);
