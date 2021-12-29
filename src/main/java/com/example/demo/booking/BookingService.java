@@ -1,2 +1,4 @@
-package com.example.demo.booking;public class bookingService {
+package com.example.demo.booking;
+
+public class BookingService {
 }
