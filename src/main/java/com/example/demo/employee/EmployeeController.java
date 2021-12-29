@@ -16,10 +16,44 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
 
+
+    /*API GET*/
     @GetMapping("/getAllEmployees")
     public List<Employee> findAllEmployees(){
         return employeeService.getAllEmployees();
     }
+
+    @GetMapping("/findEmployee/id")
+    public Employee getEmployeeById(@PathVariable Long id){
+        return employeeService.getEmployee(id);
+
+    }
+
+    @GetMapping("/findEmployee/{email}")
+    public Employee getEmployeeByEmail(@PathVariable String email){
+        return employeeService.getEmployeeByEmail(email);
+    }
+
+    /*API POST*/
+    @PostMapping("/saveEmployee/{id}")
+    public Employee addEmployee(@RequestBody Employee employee){
+        return employeeService.saveEmployee(employee);
+
+    }
+
+    /*API PUT*/
+    @PutMapping("/update")
+    public Employee updateEmployee(@RequestBody Employee employee){
+        return employeeService.updateEmployee(employee);
+    }
+
+    /*API DELETE*/
+
+    @DeleteMapping("/delete/{id}")
+    public String deleteEmployee(@PathVariable Long id){
+        return employeeService.deleteEmployee(id);
+    }
+
 
 
 
