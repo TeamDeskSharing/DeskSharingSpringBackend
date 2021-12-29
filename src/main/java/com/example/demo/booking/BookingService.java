@@ -31,11 +31,6 @@ public class BookingService {
         return bookingRepository.findById(id).orElse(null);
     }
 
-    @GetMapping
-    public Optional<Booking> getBookingID(long id){
-        return bookingRepository.findById(id);
-    }
-
     public String deleteEmployee(long id){
         bookingRepository.deleteById(id);
         return "booking deleted";
