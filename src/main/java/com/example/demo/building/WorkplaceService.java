@@ -38,7 +38,7 @@ public class WorkplaceService {
 
     public String deleteEmployee(long id){
         workplaceRepository.deleteById(id);
-        return "employee deleted";
+        return "workplace deleted";
     }
 
     public Workplace updateWorkplace(Workplace workplace){
