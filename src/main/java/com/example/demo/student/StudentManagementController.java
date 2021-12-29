@@ -20,7 +20,7 @@ public class StudentManagementController {
 
 //    hasRole('ROLE_') hasAnyRole('ROLE_') hasAuthority('permission') hasAnyAuthority('permission')
 
-    @GetMapping
+    @GetMapping()
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMINTRAINEE')")
     @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     public List<Student> getAllStudents() {

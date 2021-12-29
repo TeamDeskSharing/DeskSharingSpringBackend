@@ -23,4 +23,8 @@ public interface EmployeeRepository
     int enableAppUser(String email);
 */
 
+
+    //customized CRUD methods
+
+    Employee findByEmail(String email);
 }
