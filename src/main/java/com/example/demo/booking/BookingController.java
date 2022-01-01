@@ -24,9 +24,14 @@ public class BookingController {
         return bookingService.getAllBookings();
     }
 
-    @GetMapping("/findBookings/{status}")
+    @GetMapping("/findBookingsByStatus/{status}")
     public List <Booking> getBookingsByStatus(@PathVariable String status){
         return bookingService.getBookingByStatus(status);
+    }
+
+    @GetMapping("/findBookingsNyName/{name}")
+    public List <Booking> getBookingsByName(@PathVariable String name){
+        return bookingService.getBookingByStatus(name);
     }
 
 

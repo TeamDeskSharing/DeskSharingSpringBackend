@@ -30,12 +30,14 @@ public class Booking {
     private Date startTime;
     private Date endTime;
     private String status;
+    private String employeeName;
 
-    public Booking(Long id, Date startTime, Date endTime, String status) {
+    public Booking(Long id, Date startTime, Date endTime, String status,String employeeName) {
         this.id = id;
         this.startTime = startTime;
         this.endTime = endTime;
         this.status = status;
+        this.employeeName = employeeName;
     }
     @Id
 
@@ -71,16 +73,24 @@ public class Booking {
         this.status = status;
     }
 
+    public String getEmployeeName() {
+        return employeeName;
+    }
+
+    public void setEmployeeName(String employeeName) {
+        this.employeeName = employeeName;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
-        return Objects.equals(id, booking.id) && Objects.equals(startTime, booking.startTime) && Objects.equals(endTime, booking.endTime) && Objects.equals(status, booking.status);
+        return Objects.equals(id, booking.id) && Objects.equals(startTime, booking.startTime) && Objects.equals(endTime, booking.endTime) && Objects.equals(status, booking.status) && Objects.equals(employeeName, booking.employeeName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, startTime, endTime, status);
+        return Objects.hash(id, startTime, endTime, status, employeeName);
     }
 }
