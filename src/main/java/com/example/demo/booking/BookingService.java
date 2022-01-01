@@ -31,6 +31,11 @@ public class BookingService {
         return bookingRepository.findById(id).orElse(null);
     }
 
+    @GetMapping
+    public List <Booking> getBookingByStatus(String status){
+        return bookingRepository.findByStatus(status);
+    }
+
     public String deleteEmployee(long id){
         bookingRepository.deleteById(id);
         return "booking deleted";
