@@ -51,6 +51,7 @@ public class BookingService {
         booking1.setEndTime(booking.getEndTime());
         booking1.setStatus(booking.getStatus());
         booking1.setStartTime(booking.getStartTime());
+        booking1.setEmployeeName(booking.getEmployeeName());
         return bookingRepository.save(booking);
     }
 }

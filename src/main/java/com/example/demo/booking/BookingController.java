@@ -3,10 +3,7 @@ package com.example.demo.booking;
 import com.example.demo.employee.Employee;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,5 +31,9 @@ public class BookingController {
         return bookingService.getBookingByStatus(name);
     }
 
+    @PutMapping("/update")
+    public Booking updateBooking(@RequestBody Booking booking){
+        return bookingService.updateBooking(booking);
+    }
 
 }
