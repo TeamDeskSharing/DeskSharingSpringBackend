@@ -1,5 +1,6 @@
 package com.example.demo.booking;
 
+import com.example.demo.building.Building;
 import com.example.demo.employee.Employee;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,14 +27,19 @@ public class BookingController {
         return bookingService.getBookingByStatus(status);
     }
 
-    @GetMapping("/findBookingsNyName/{name}")
-    public List <Booking> getBookingsByName(@PathVariable String name){
-        return bookingService.getBookingByStatus(name);
+    @GetMapping("/findBookingsByName/{employeeName}")
+    public List <Booking> getBookingsByName(@PathVariable String employeeName){
+        return bookingService.getBookingByStatus(employeeName);
     }
 
     @PutMapping("/update")
     public Booking updateBooking(@RequestBody Booking booking){
         return bookingService.updateBooking(booking);
+    }
+
+    @PostMapping("/saveBooking/{id}")
+    public Booking addBooking(@RequestBody Booking booking){
+        return bookingService.saveBooking(booking);
     }
 
 }

@@ -3,9 +3,7 @@ package com.example.demo.building;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,7 +17,12 @@ public class OfficeController {
 
 
     @GetMapping("/getAllOffices")
-    public List<Office> findAllEmployees(){
+    public List<Office> findAllOffices(){
         return officeService.getAllOffice();
+    }
+
+    @PostMapping("/saveOffice/{id}")
+    public Office addOffice(@RequestBody Office office){
+        return officeService.saveOffice(office);
     }
 }

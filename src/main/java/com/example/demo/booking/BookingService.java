@@ -37,8 +37,8 @@ public class BookingService {
     }
 
     @GetMapping
-    public List <Booking> findByEmployeeName(String name){
-        return bookingRepository.findByEmployeeName(name);
+    public List <Booking> findByEmployeeName(String employeeName){
+        return bookingRepository.findByEmployeeName(employeeName);
     }
 
     public String deleteEmployee(long id){
