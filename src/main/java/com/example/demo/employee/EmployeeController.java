@@ -23,7 +23,7 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
-    @GetMapping("/findEmployee/id")
+    @GetMapping("/findEmployeeById/{id}")
     public Employee getEmployeeById(@PathVariable Long id){
         return employeeService.getEmployee(id);
 
@@ -53,6 +53,7 @@ public class EmployeeController {
     public String deleteEmployee(@PathVariable Long id){
         return employeeService.deleteEmployee(id);
     }
+
 
 
 

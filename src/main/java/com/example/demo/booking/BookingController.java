@@ -27,6 +27,11 @@ public class BookingController {
         return bookingService.getBookingByStatus(status);
     }
 
+    @GetMapping("/findBookingById/{id}")
+    public Booking getBookingById(@PathVariable Long id){
+        return bookingService.getBooking(id);
+    }
+
     @GetMapping("/findBookingsByName/{employeeName}")
     public List <Booking> getBookingsByName(@PathVariable String employeeName){
         return bookingService.getBookingByStatus(employeeName);

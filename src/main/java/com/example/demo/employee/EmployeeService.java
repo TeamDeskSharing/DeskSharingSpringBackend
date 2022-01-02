@@ -29,7 +29,7 @@ public class EmployeeService {
     }
 
     @GetMapping
-    public Employee getEmployee(long id){
+    public Employee getEmployee(Long id){
         return employeeRepository.findById(id).orElse(null);
     }
 
@@ -38,7 +38,7 @@ public class EmployeeService {
         return employeeRepository.findByEmail(email);
     }
 
-    public String deleteEmployee(long id){
+    public String deleteEmployee(Long id){
         employeeRepository.deleteById(id);
         return "employee deleted";
     }

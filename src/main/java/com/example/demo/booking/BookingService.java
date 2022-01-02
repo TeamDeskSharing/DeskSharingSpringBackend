@@ -2,9 +2,11 @@ package com.example.demo.booking;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -15,6 +17,8 @@ public class BookingService {
 
     @Autowired // new
     private final BookingRepository bookingRepository;
+
+
 
     @GetMapping
     public List<Booking> getAllBookings(){
@@ -46,6 +50,7 @@ public class BookingService {
         return "booking deleted";
     }
 
+    @PutMapping
     public Booking updateBooking(Booking booking){
         Booking booking1  = bookingRepository.findById(booking.getId()).orElse(null);
         booking1.setEndtime(booking.getEndtime());
@@ -54,4 +59,18 @@ public class BookingService {
         booking1.setEmployeename(booking.getEmployeename());
         return bookingRepository.save(booking);
     }
+
+
+/*    @Override
+    public ResponseEntity<Booking> updateBookingById(Long id, Booking booking){
+
+        Booking myBooking = bookingRepository.findById(id).get();
+
+        myBooking.setStatus(booking.getStatus());
+
+
+        Booking updatedBooking = bookingRepository.save(myBooking);
+        return ResponseEntity.ok(updatedBooking);
+
+    }*/
 }
