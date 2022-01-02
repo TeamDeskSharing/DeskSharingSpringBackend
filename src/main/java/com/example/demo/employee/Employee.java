@@ -13,7 +13,6 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Table(name = "t_employee")
 public class Employee {
 
@@ -31,23 +30,47 @@ public class Employee {
 
     private Long id;
 
-
+    private String firstname;
+    private String lastname;
     private String email;
     private boolean homeoffice;
     private String phonenumber;
-    private String firstname;
-    private String surname;
-    private String workingspacenumber;
 
 
-    public String getWorkingspacenumber() {
-        return workingspacenumber;
+    public Employee(Long id, String firstname, String lastname, String email, boolean homeoffice, String phonenumber) {
+        this.id = id;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.email = email;
+        this.homeoffice = homeoffice;
+        this.phonenumber = phonenumber;
     }
 
-    public void setWorkingspacenumber(String workingspacenumber) {
-        this.workingspacenumber = workingspacenumber;
+    @Id
+    public Long getId() {
+        return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
 
     public boolean isHomeoffice() {
         return homeoffice;
@@ -64,32 +87,6 @@ public class Employee {
     public void setPhonenumber(String phonenumber) {
         this.phonenumber = phonenumber;
     }
-
-    public String getFirstname() {
-        return firstname;
-    }
-
-    public void setFirstname(String firstname) {
-        this.firstname = firstname;
-    }
-
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
-    @Id
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
 
     public String getEmail() {
         return email;

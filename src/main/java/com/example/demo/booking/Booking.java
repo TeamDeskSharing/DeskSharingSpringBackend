@@ -1,6 +1,5 @@
 package com.example.demo.booking;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -28,26 +27,20 @@ public class Booking {
     )
     private Long id;
 
-    private Date starttime;
-    private Date endtime;
+    private Date timestart;
+    private Date timeend;
     private String status;
     private String employeename;
+    private String workplace;
 
-    public Booking(Long id, Date starttime, Date endtime, String status, String employeename) {
+    public Booking(Long id, Date timestart, Date timeend, String status, String employeename, String workplace) {
         this.id = id;
-        this.starttime = starttime;
-        this.endtime = endtime;
+        this.timestart = timestart;
+        this.timeend = timeend;
         this.status = status;
         this.employeename = employeename;
+        this.workplace = workplace;
     }
-
-    /*    public Booking(Long id, Date startTime, Date endTime, String status,String employeeName) {
-        this.id = id;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.status = status;
-        this.employeeName = employeeName;
-    }*/
 
     @Id
 
@@ -59,20 +52,21 @@ public class Booking {
         this.id = id;
     }
 
-    public Date getStarttime() {
-        return starttime;
+
+    public Date getTimestart() {
+        return timestart;
     }
 
-    public void setStarttime(Date starttime) {
-        this.starttime = starttime;
+    public void setTimestart(Date timestart) {
+        this.timestart = timestart;
     }
 
-    public Date getEndtime() {
-        return endtime;
+    public Date getTimeend() {
+        return timeend;
     }
 
-    public void setEndtime(Date endtime) {
-        this.endtime = endtime;
+    public void setTimeend(Date timeend) {
+        this.timeend = timeend;
     }
 
     public String getStatus() {
@@ -83,6 +77,14 @@ public class Booking {
         this.status = status;
     }
 
+    public String getWorkplace() {
+        return workplace;
+    }
+
+    public void setWorkplace(String workplace) {
+        this.workplace = workplace;
+    }
+
     public String getEmployeename() {
         return employeename;
     }
@@ -91,16 +93,17 @@ public class Booking {
         this.employeename = employeename;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
-        return Objects.equals(id, booking.id) && Objects.equals(starttime, booking.starttime) && Objects.equals(endtime, booking.endtime) && Objects.equals(status, booking.status) && Objects.equals(employeename, booking.employeename);
+        return Objects.equals(id, booking.id) && Objects.equals(timestart, booking.timestart) && Objects.equals(timeend, booking.timeend) && Objects.equals(status, booking.status) && Objects.equals(employeename, booking.employeename) && Objects.equals(workplace, booking.workplace);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, starttime, endtime, status, employeename);
+        return Objects.hash(id, timestart, timeend, status, employeename, workplace);
     }
 }

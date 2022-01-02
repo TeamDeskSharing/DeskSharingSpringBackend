@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -13,6 +14,8 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service("api/v1/booking")
+@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+
 public class BookingService {
 
     @Autowired // new
@@ -51,11 +54,12 @@ public class BookingService {
     }
 
     @PutMapping
+    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     public Booking updateBooking(Booking booking){
         Booking booking1  = bookingRepository.findById(booking.getId()).orElse(null);
-        booking1.setEndtime(booking.getEndtime());
+        booking1.setTimeend(booking.getTimeend());
         booking1.setStatus(booking.getStatus());
-        booking1.setStarttime(booking.getStarttime());
+        booking1.setTimestart(booking.getTimestart());
         booking1.setEmployeename(booking.getEmployeename());
         return bookingRepository.save(booking);
     }

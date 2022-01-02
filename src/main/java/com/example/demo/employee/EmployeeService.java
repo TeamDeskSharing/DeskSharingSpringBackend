@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -43,11 +44,12 @@ public class EmployeeService {
         return "employee deleted";
     }
 
+    @PutMapping
     public Employee updateEmployee(Employee employee){
         Employee employee1  = employeeRepository.findById(employee.getId()).orElse(null);
         employee1.setEmail(employee.getEmail());
         employee1.setFirstname(employee.getFirstname());
-        employee1.setSurname(employee.getSurname());
+        employee1.setLastname(employee.getLastname());
         return employeeRepository.save(employee1);
     }
 
