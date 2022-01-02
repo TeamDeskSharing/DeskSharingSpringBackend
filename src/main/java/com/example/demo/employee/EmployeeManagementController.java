@@ -13,21 +13,21 @@ import java.util.List;
 
 public class EmployeeManagementController {
 
-    private static final List<Employee> TEST_EMPLOYEES = Arrays.asList(
+/*    private static final List<Employee> TEST_EMPLOYEES = Arrays.asList(
             new Employee(1L, "James", "Employee","Employee"),
             new Employee(2L, "Maria", "Employee","Employee"),
             new Employee(3L, "Anna", "Employee","Employee")
-    );
+    );*/
 
 //    hasRole('ROLE_') hasAnyRole('ROLE_') hasAuthority('permission') hasAnyAuthority('permission')
 
-    @GetMapping
+/*    @GetMapping
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMINTRAINEE')")
     @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     public List<Employee> getAllEmployees() {
         System.out.println("getAllEmployees");
         return TEST_EMPLOYEES;
-    }
+    }*/
 
 /*    @GetMapping("/getEmployeeById/[id}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMINTRAINEE')")

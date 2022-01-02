@@ -37,8 +37,8 @@ public class BookingService {
     }
 
     @GetMapping
-    public List <Booking> findByEmployeeName(String employeeName){
-        return bookingRepository.findByEmployeeName(employeeName);
+    public List <Booking> findByEmployeeName(String employeename){
+        return bookingRepository.findByEmployeename(employeename);
     }
 
     public String deleteEmployee(long id){
@@ -48,10 +48,10 @@ public class BookingService {
 
     public Booking updateBooking(Booking booking){
         Booking booking1  = bookingRepository.findById(booking.getId()).orElse(null);
-        booking1.setEndTime(booking.getEndTime());
+        booking1.setEndtime(booking.getEndtime());
         booking1.setStatus(booking.getStatus());
-        booking1.setStartTime(booking.getStartTime());
-        booking1.setEmployeeName(booking.getEmployeeName());
+        booking1.setStarttime(booking.getStarttime());
+        booking1.setEmployeename(booking.getEmployeename());
         return bookingRepository.save(booking);
     }
 }

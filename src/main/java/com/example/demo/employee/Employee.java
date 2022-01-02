@@ -1,5 +1,6 @@
 package com.example.demo.employee;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -12,6 +13,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "t_employee")
 public class Employee {
 
@@ -29,17 +31,54 @@ public class Employee {
 
     private Long id;
 
-    private String firstName;
-    private String lastName;
+
     private String email;
+    private boolean homeoffice;
+    private String phonenumber;
+    private String firstname;
+    private String surname;
+    private String workingspacenumber;
 
 
+    public String getWorkingspacenumber() {
+        return workingspacenumber;
+    }
 
-    public Employee(Long id, String firstName, String lastName, String email) {
-        this.id = id;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.email = email;
+    public void setWorkingspacenumber(String workingspacenumber) {
+        this.workingspacenumber = workingspacenumber;
+    }
+
+
+    public boolean isHomeoffice() {
+        return homeoffice;
+    }
+
+    public void setHomeoffice(boolean homeoffice) {
+        this.homeoffice = homeoffice;
+    }
+
+    public String getPhonenumber() {
+        return phonenumber;
+    }
+
+    public void setPhonenumber(String phonenumber) {
+        this.phonenumber = phonenumber;
+    }
+
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    public String getSurname() {
+        return surname;
+    }
+
+    public void setSurname(String surname) {
+        this.surname = surname;
     }
 
     @Id
@@ -51,21 +90,6 @@ public class Employee {
         this.id = id;
     }
 
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
 
     public String getEmail() {
         return email;
