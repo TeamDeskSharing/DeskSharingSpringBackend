@@ -2,9 +2,7 @@ package com.example.demo.booking;
 
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -18,7 +16,32 @@ public class BookingController {
 
 
     @GetMapping("/getAllBookings")
-    public List<Booking> findAllBookings(){
+    public List<Booking> findAllBookings() {
         return bookingService.getAllBookings();
     }
+
+    @GetMapping("/findBookingsByStatus/{status}")
+    public List<Booking> getBookingsByStatus(@PathVariable String status) {
+        return bookingService.getBookingByStatus(status);
+    }
+
+    @GetMapping("/findBookingsNyName/{name}")
+    public List<Booking> getBookingsByName(@PathVariable String name) {
+        return bookingService.getBookingByStatus(name);
+    }
+
+    @PutMapping("/update")
+    public Booking updateBooking(@RequestBody Booking booking){
+        return bookingService.updateBooking(booking);
+    }
+    @PostMapping("/saveBooking/{id}")
+    public Booking addBooking(@RequestBody Booking booking){
+        return bookingService.saveBooking(booking);
+    }
+
+
+
+
+
+
 }
