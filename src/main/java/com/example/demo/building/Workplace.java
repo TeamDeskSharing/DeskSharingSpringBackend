@@ -13,6 +13,7 @@ import java.util.Objects;
 @NoArgsConstructor
 @Table(name = "t_workplace")
 
+
 public class Workplace {
     @SequenceGenerator(
             name = "workplace_sequence",

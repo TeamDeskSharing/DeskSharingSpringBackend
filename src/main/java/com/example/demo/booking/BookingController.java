@@ -30,10 +30,29 @@ public class BookingController {
         return bookingService.getBookingByStatus(name);
     }
 
+    @GetMapping("/findBookingbyID/{id}")
+    public Booking getBookingsByName(@PathVariable Long id) {
+        return bookingService.getBooking(id);
+    }
+
     @PutMapping("/update")
     public Booking updateBooking(@RequestBody Booking booking){
         return bookingService.updateBooking(booking);
     }
+
+    @PutMapping("/update/{id}")
+    public Booking updateBookingbyIDSetStatusAkzeptiert(@PathVariable Long id){
+        return bookingService.updateBookingbyIDSetStatusAkzeptiert(id);
+    }
+    @PutMapping("/update/{id}")
+    public Booking updateBookingbyIDSetStatusAbgelehnt(@PathVariable Long id){
+        return bookingService.updateBookingbyIDSetStatusAkzeptiert(id);
+    }
+    @PutMapping("/update/{id}")
+    public Booking updateBookingbyIDSetStatusSchwebend(@PathVariable Long id){
+        return bookingService.updateBookingbyIDSetStatusSchwebend(id);
+    }
+
     @PostMapping("/saveBooking/{id}")
     public Booking addBooking(@RequestBody Booking booking){
         return bookingService.saveBooking(booking);

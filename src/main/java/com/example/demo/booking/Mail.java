@@ -6,9 +6,9 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class Mail {
-    private String pName;
-    private String pMailAdresse;
-    private String pStatus;
+    private String pname;
+    private String pmailadresse;
+    private String pstatus;
 
     final String username = "DS.WS.2021.2022@gmail.com";
     final String password = "SoftwareprojektFun#";
@@ -28,22 +28,22 @@ public class Mail {
                     }
                 });
 
-        System.out.println(pName);
+        System.out.println(pname);
 
-        System.out.println(pMailAdresse);
+        System.out.println(pmailadresse);
 
-        System.out.println(pStatus);
+        System.out.println(pstatus);
 
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress("DS.WS.2021.2022@gmail.com"));
             message.setRecipients(
                     Message.RecipientType.TO,
-                    InternetAddress.parse(pMailAdresse)
+                    InternetAddress.parse(pmailadresse)
             );
             message.setSubject("Info DeskSharingApp");
-            message.setText("Dear "+ pName+","
-                    + "\n\n Der Status der Reservierung lautet: "+ pStatus);
+            message.setText("Dear "+ pname+","
+                    + "\n\n Der Status der Reservierung lautet: "+ pstatus);
 
             Transport.send(message);
 
@@ -54,9 +54,9 @@ public class Mail {
         }
     }
     public Mail(String pName,String pMailAdresse,String pStatus) {
-        this.pName=pName;
-        this.pStatus=pStatus;
-        this.pMailAdresse=pMailAdresse;
+        this.pname=pName;
+        this.pstatus=pStatus;
+        this.pmailadresse=pMailAdresse;
         //this.sendMail();
     }
 
@@ -64,35 +64,35 @@ public class Mail {
     }
 
     public String getpName() {
-        return pName;
+        return pname;
     }
 
     public void setpName(String pName) {
-        this.pName = pName;
+        this.pname = pName;
     }
 
     public String getpMailAdresse() {
-        return pMailAdresse;
+        return pmailadresse;
     }
 
     public void setpMailAdresse(String pMailAdresse) {
-        this.pMailAdresse = pMailAdresse;
+        this.pmailadresse = pMailAdresse;
     }
 
     public String getpStatus() {
-        return pStatus;
+        return pstatus;
     }
 
     public void setpStatus(String pStatus) {
-        this.pStatus = pStatus;
+        this.pstatus = pStatus;
     }
 
     @Override
     public String toString() {
         return "Mail{" +
-                "pName='" + pName + '\'' +
-                ", pMailAdresse='" + pMailAdresse + '\'' +
-                ", pStatus='" + pStatus + '\'' +
+                "pName='" + pname + '\'' +
+                ", pMailAdresse='" + pmailadresse + '\'' +
+                ", pStatus='" + pstatus + '\'' +
                 '}';
     }
 }

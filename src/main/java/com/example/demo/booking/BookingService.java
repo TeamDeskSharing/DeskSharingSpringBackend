@@ -61,7 +61,31 @@ public class BookingService {
         booking1.setStatus(booking.getStatus());
         booking1.setTimestart(booking.getTimestart());
         booking1.setEmployeename(booking.getEmployeename());
-        return bookingRepository.save(booking);
+        return bookingRepository.save(booking1);
+    }
+
+    @PutMapping
+    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+    public Booking updateBookingbyIDSetStatusAkzeptiert(Long id){
+        Booking booking1  = bookingRepository.findById(id).orElse(null);
+        booking1.setStatus("akzeptiert");
+        return bookingRepository.save(booking1);
+    }
+
+    @PutMapping
+    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+    public Booking updateBookingbyIDSetStatusAbgelehnt(Long id){
+        Booking booking1  = bookingRepository.findById(id).orElse(null);
+        booking1.setStatus("abgelehnt");
+        return bookingRepository.save(booking1);
+    }
+
+    @PutMapping
+    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+    public Booking updateBookingbyIDSetStatusSchwebend(Long id){
+        Booking booking1  = bookingRepository.findById(id).orElse(null);
+        booking1.setStatus("schwebend");
+        return bookingRepository.save(booking1);
     }
 
 
