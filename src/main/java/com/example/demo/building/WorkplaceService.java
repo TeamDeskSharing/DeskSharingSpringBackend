@@ -38,6 +38,12 @@ public class WorkplaceService {
         return workplaceRepository.findByphone(phone);
     }
 
+    @GetMapping
+    public List <Booking> getAllBookingsOfWorkplace(long id){
+        Workplace workplace1  = workplaceRepository.findById(id).orElse(null);
+        return workplace1.getBookings();
+    }
+
     public String deleteWorkplace(long id){
         workplaceRepository.deleteById(id);
         return "workplace deleted";
@@ -47,15 +53,15 @@ public class WorkplaceService {
     public Workplace updateWorkplace(Workplace workplace){
         Workplace workplace1  = workplaceRepository.findById(workplace.getId()).orElse(null);
         workplace1.setPhone(workplace.getPhone());
-        workplace1.setBookings(workplace.getBookings());
+        //workplace1.setBookings(workplace.getBookings());
         return workplaceRepository.save(workplace1);
     }
     @PutMapping
     public Workplace addBooking(Long id, Booking booking){
         Workplace workplace1  = workplaceRepository.findById(id).orElse(null);
-        List<Booking> bookings=workplace1.getBookings();
-        bookings.add(booking);
-        workplace1.setBookings(bookings);
+        //List<Booking> bookings=workplace1.getBookings();
+        //bookings.add(booking);
+        //workplace1.setBookings(bookings);
         return workplaceRepository.save(workplace1);
     }
 

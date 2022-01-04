@@ -23,26 +23,25 @@ public class Workplace {
             sequenceName = "workplace_sequence",
             allocationSize = 1
     )
-    @Id
+
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "workplace_sequence"
     )
+    @Id
     private Long id;
 
     private String phone;
 
-    @OneToMany(
-            cascade = CascadeType.ALL,
-            orphanRemoval = true
-    )
-    private List<Booking> bookings = new ArrayList<>();
+    @OneToMany(targetEntity=Booking.class, mappedBy="workplace",
+            fetch=FetchType.EAGER)
+    private List<Booking> bookings;
 
     public Workplace(Long id, String phone) {
         this.id = id;
         this.phone = phone;
     }
-    @Id
+    //@Id
 
     public Long getId() {
         return id;
@@ -63,7 +62,6 @@ public class Workplace {
     public List<Booking> getBookings() {
         return bookings;
     }
-
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }

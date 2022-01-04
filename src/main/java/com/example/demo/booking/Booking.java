@@ -1,5 +1,6 @@
 package com.example.demo.booking;
 
+import com.example.demo.building.Workplace;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -20,29 +21,33 @@ public class Booking {
             sequenceName = "booking_sequence",
             allocationSize = 1
     )
-    @Id
+
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "booking_sequence"
     )
+    @Id
     private Long id;
 
     private Date timestart;
     private Date timeend;
     private String status;
     private String employeename;
-    private String workplace;
 
-    public Booking(Long id, Date timestart, Date timeend, String status, String employeename, String workplace) {
+    @ManyToOne
+    @JoinColumn(name="workplaceid", nullable=false)
+    private Workplace workplace;
+
+
+    public Booking(Long id, Date timestart, Date timeend, String status, String employeename) {
         this.id = id;
         this.timestart = timestart;
         this.timeend = timeend;
         this.status = status;
         this.employeename = employeename;
-        this.workplace = workplace;
     }
 
-    @Id
+    //@Id
 
     public Long getId() {
         return id;
@@ -51,7 +56,6 @@ public class Booking {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public Date getTimestart() {
         return timestart;
@@ -77,14 +81,6 @@ public class Booking {
         this.status = status;
     }
 
-    public String getWorkplace() {
-        return workplace;
-    }
-
-    public void setWorkplace(String workplace) {
-        this.workplace = workplace;
-    }
-
     public String getEmployeename() {
         return employeename;
     }
@@ -93,6 +89,13 @@ public class Booking {
         this.employeename = employeename;
     }
 
+    public Workplace getWorkplace() {
+        return workplace;
+    }
+
+    public void setWorkplace(Workplace workplace) {
+        this.workplace = workplace;
+    }
 
     @Override
     public boolean equals(Object o) {

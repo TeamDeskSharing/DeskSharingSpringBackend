@@ -26,6 +26,12 @@ public class WorkplaceController {
         return workplaceService.getWorkplace(id);
     }
 
+    @GetMapping("/getAllBookingsOfWorkplace/{id}")
+    public List <Booking> getAllBookingsOfWorkplace(@PathVariable Long id){
+        return workplaceService.getAllBookingsOfWorkplace(id);
+    }
+
+
     @PutMapping("/update")
     public Workplace updateWorkplace(@RequestBody Workplace workplace){
         return workplaceService.updateWorkplace(workplace);

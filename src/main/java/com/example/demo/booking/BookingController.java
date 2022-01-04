@@ -1,5 +1,6 @@
 package com.example.demo.booking;
 
+import com.example.demo.building.Workplace;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,6 +31,11 @@ public class BookingController {
         return bookingService.getBookingByStatus(name);
     }
 
+    @GetMapping("/getWorkplaceByBookingID/{id}")
+    public Workplace getWorkplaceByBookingID(@PathVariable long id) {
+        return bookingService.getWorkplaceByBookingID(id);
+    }
+
     @GetMapping("/findBookingbyID/{id}")
     public Booking getBookingsByName(@PathVariable Long id) {
         return bookingService.getBooking(id);
@@ -40,21 +46,26 @@ public class BookingController {
         return bookingService.updateBooking(booking);
     }
 
-    @PutMapping("/update/{id}")
+    @PutMapping("/updateAkzeptiert/{id}")
     public Booking updateBookingbyIDSetStatusAkzeptiert(@PathVariable Long id){
         return bookingService.updateBookingbyIDSetStatusAkzeptiert(id);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/updateAbgelehnt/{id}")
     public Booking updateBookingbyIDSetStatusAbgelehnt(@PathVariable Long id){
         return bookingService.updateBookingbyIDSetStatusAkzeptiert(id);
     }
-    @PutMapping("/update/{id}")
+    @PutMapping("/updateSchwebend/{id}")
     public Booking updateBookingbyIDSetStatusSchwebend(@PathVariable Long id){
         return bookingService.updateBookingbyIDSetStatusSchwebend(id);
     }
 
+    @PutMapping("/addWorkplaceToBooking/{id}")
+    public Booking addWorkplaceToBooking(@PathVariable Long id,@RequestBody Workplace workplace){
+        return bookingService.addWorkplace(id,workplace);
+    }
+
     @PostMapping("/saveBooking/{id}")
-    public Booking addBooking(@RequestBody Booking booking){
+    public Booking saveBooking(@RequestBody Booking booking){
         return bookingService.saveBooking(booking);
     }
 

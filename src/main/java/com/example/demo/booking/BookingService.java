@@ -1,5 +1,6 @@
 package com.example.demo.booking;
 
+import com.example.demo.building.Workplace;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -44,9 +45,16 @@ public class BookingService {
     }
 
     @GetMapping
+    public  Workplace getWorkplaceByBookingID (long id){
+        Booking booking1  = bookingRepository.findById(id).orElse(null);
+        return booking1.getWorkplace();
+    }
+
+    @GetMapping
     public List <Booking> findByEmployeeName(String employeename){
         return bookingRepository.findByEmployeename(employeename);
     }
+
 
 
     public String deleteEmployee(long id){
@@ -86,6 +94,14 @@ public class BookingService {
     public Booking updateBookingbyIDSetStatusSchwebend(Long id){
         Booking booking1  = bookingRepository.findById(id).orElse(null);
         booking1.setStatus("schwebend");
+        return bookingRepository.save(booking1);
+    }
+
+    @PutMapping
+    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+    public Booking addWorkplace(Long id, Workplace workplace){
+        Booking booking1  = bookingRepository.findById(id).orElse(null);
+        booking1.setWorkplace(workplace);
         return bookingRepository.save(booking1);
     }
 
