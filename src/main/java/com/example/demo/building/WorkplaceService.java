@@ -1,11 +1,13 @@
 package com.example.demo.building;
 
 
+import com.example.demo.booking.Booking;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 
 import java.util.List;
 
@@ -36,14 +38,25 @@ public class WorkplaceService {
         return workplaceRepository.findByphone(phone);
     }
 
-    public String deleteEmployee(long id){
+    public String deleteWorkplace(long id){
         workplaceRepository.deleteById(id);
         return "workplace deleted";
     }
 
+    @PutMapping
     public Workplace updateWorkplace(Workplace workplace){
         Workplace workplace1  = workplaceRepository.findById(workplace.getId()).orElse(null);
         workplace1.setPhone(workplace.getPhone());
+        workplace1.setBookings(workplace.getBookings());
         return workplaceRepository.save(workplace1);
     }
+    @PutMapping
+    public Workplace addBooking(Long id, Booking booking){
+        Workplace workplace1  = workplaceRepository.findById(id).orElse(null);
+        List<Booking> bookings=workplace1.getBookings();
+        bookings.add(booking);
+        workplace1.setBookings(bookings);
+        return workplaceRepository.save(workplace1);
+    }
+
 }

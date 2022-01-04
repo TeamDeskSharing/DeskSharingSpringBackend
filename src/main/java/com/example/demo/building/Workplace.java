@@ -1,10 +1,13 @@
 package com.example.demo.building;
 
+import com.example.demo.booking.Booking;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -29,6 +32,12 @@ public class Workplace {
 
     private String phone;
 
+    @OneToMany(
+            cascade = CascadeType.ALL,
+            orphanRemoval = true
+    )
+    private List<Booking> bookings = new ArrayList<>();
+
     public Workplace(Long id, String phone) {
         this.id = id;
         this.phone = phone;
@@ -49,6 +58,14 @@ public class Workplace {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 
     @Override
