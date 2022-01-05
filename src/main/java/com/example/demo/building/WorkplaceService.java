@@ -38,11 +38,11 @@ public class WorkplaceService {
         return workplaceRepository.findByphone(phone);
     }
 
-    @GetMapping
+    /*@GetMapping
     public List <Booking> getAllBookingsOfWorkplace(long id){
         Workplace workplace1  = workplaceRepository.findById(id).orElse(null);
         return workplace1.getBookings();
-    }
+    }*/
 
     public String deleteWorkplace(long id){
         workplaceRepository.deleteById(id);

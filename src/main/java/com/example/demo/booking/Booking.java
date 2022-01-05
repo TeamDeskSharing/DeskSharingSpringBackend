@@ -35,7 +35,7 @@ public class Booking {
     private String employeename;
 
     @ManyToOne
-    @JoinColumn(name="workplaceid", nullable=false)
+    @JoinColumn(name="workplace_id", nullable=true)
     private Workplace workplace;
 
 

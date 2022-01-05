@@ -33,9 +33,9 @@ public class Workplace {
 
     private String phone;
 
-    @OneToMany(targetEntity=Booking.class, mappedBy="workplace",
-            fetch=FetchType.EAGER)
-    private List<Booking> bookings;
+    //@OneToMany(targetEntity=Booking.class, mappedBy="workplace",
+    //        fetch=FetchType.EAGER)
+    //private List<Booking> bookings;
 
     public Workplace(Long id, String phone) {
         this.id = id;
@@ -59,12 +59,12 @@ public class Workplace {
         this.phone = phone;
     }
 
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
-    }
+    //public List<Booking> getBookings() {
+    //    return bookings;
+    //}
+    //public void setBookings(List<Booking> bookings) {
+    //    this.bookings = bookings;
+    //}
 
     @Override
     public boolean equals(Object o) {
