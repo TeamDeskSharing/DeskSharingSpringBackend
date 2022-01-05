@@ -1,6 +1,8 @@
 package com.example.demo.booking;
 
 import com.example.demo.building.Workplace;
+import com.example.demo.building.WorkplaceRepository;
+import com.example.demo.employee.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +23,8 @@ public class BookingService {
 
     @Autowired // new
     private final BookingRepository bookingRepository;
+    private final WorkplaceRepository workplaceRepository;
+    private final EmployeeRepository employeeRepository;
 
 
 
@@ -50,10 +54,10 @@ public class BookingService {
         return booking1.getWorkplace();
     }
 
-    @GetMapping
-    public List <Booking> findByEmployeeName(String employeename){
-        return bookingRepository.findByEmployeename(employeename);
-    }
+//    @GetMapping
+//    public List <Booking> findByEmployeeName(String employeename){
+//        return bookingRepository.findByEmployeename(employeename);
+//    }
 
 
 
@@ -69,7 +73,6 @@ public class BookingService {
         booking1.setTimeend(booking.getTimeend());
         booking1.setStatus(booking.getStatus());
         booking1.setTimestart(booking.getTimestart());
-        booking1.setEmployeename(booking.getEmployeename());
         return bookingRepository.save(booking1);
     }
 
@@ -99,9 +102,17 @@ public class BookingService {
 
     @PutMapping
     @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
-    public Booking addWorkplace(Long id, Workplace workplace){
+    public Booking addWorkplace(Long id, long wid){
         Booking booking1  = bookingRepository.findById(id).orElse(null);
-        booking1.setWorkplace(workplace);
+        booking1.setWorkplace(workplaceRepository.findById(wid).orElse(null));
+        return bookingRepository.save(booking1);
+    }
+
+    @PutMapping
+    @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+    public Booking addEmployee(Long id, long wid){
+        Booking booking1  = bookingRepository.findById(id).orElse(null);
+        booking1.setEmployee(employeeRepository.findById(wid).orElse(null));
         return bookingRepository.save(booking1);
     }
 

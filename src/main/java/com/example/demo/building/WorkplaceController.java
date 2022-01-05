@@ -21,7 +21,7 @@ public class WorkplaceController {
         return workplaceService.getAllWorkplaces();
     }
 
-    @GetMapping("/getAllWorkplaces/{id}")
+    @GetMapping("/getWorkplaceByID/{id}")
     public Workplace findAWorkplaceByID(@PathVariable Long id){
         return workplaceService.getWorkplace(id);
     }
@@ -37,8 +37,13 @@ public class WorkplaceController {
         return workplaceService.updateWorkplace(workplace);
     }
 
+    @PostMapping("/saveWorkplace")
+    public Workplace saveWorkplace(@RequestBody Workplace workplace){
+        return workplaceService.saveWorkplace(workplace);
+    }
+
     @PutMapping("/addBooking/{id}")
-    public Workplace updateEmployee(@PathVariable Long id,@RequestBody Booking booking){
+    public Workplace addBooking(@PathVariable Long id,@RequestBody Booking booking){
         return workplaceService.addBooking(id,booking);
     }
 

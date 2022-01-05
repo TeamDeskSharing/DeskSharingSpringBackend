@@ -59,9 +59,14 @@ public class BookingController {
         return bookingService.updateBookingbyIDSetStatusSchwebend(id);
     }
 
-    @PutMapping("/addWorkplaceToBooking/{id}")
-    public Booking addWorkplaceToBooking(@PathVariable Long id,@RequestBody Workplace workplace){
-        return bookingService.addWorkplace(id,workplace);
+    @PutMapping("/addWorkplaceToBooking/{id}/{wid}")
+    public Booking addWorkplaceToBooking(@PathVariable Long id,@PathVariable Long wid){
+        return bookingService.addWorkplace(id,wid);
+    }
+
+    @PutMapping("/addEmployeeToBooking/{id}/{wid}")
+    public Booking addEmployeeToBooking(@PathVariable Long id,@PathVariable Long wid){
+        return bookingService.addEmployee(id,wid);
     }
 
     @PostMapping("/saveBooking/{id}")

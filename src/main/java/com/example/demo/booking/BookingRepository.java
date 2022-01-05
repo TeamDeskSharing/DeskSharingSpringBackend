@@ -10,6 +10,6 @@ import java.util.Optional;
 public interface BookingRepository  extends JpaRepository<Booking, Long> {
 
 List<Booking> findByStatus (String status);
-List<Booking> findByEmployeename (String employeeName);
+List<Booking> findByEmployee (Employee employee);
 List <Booking> findByWorkplace (Workplace workplace);
 }

@@ -1,11 +1,14 @@
 package com.example.demo.booking;
 
+import ch.qos.logback.core.html.NOPThrowableRenderer;
 import com.example.demo.building.Workplace;
+import com.example.demo.employee.Employee;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 
@@ -27,24 +30,28 @@ public class Booking {
             generator = "booking_sequence"
     )
     @Id
+
     private Long id;
 
     private Date timestart;
     private Date timeend;
     private String status;
-    private String employeename;
+
 
     @ManyToOne
-    @JoinColumn(name="workplace_id", nullable=true)
-    private Workplace workplace;
+    @JoinColumn(name="employeeid", nullable=true)
+    private Employee employee=null;
+
+    @ManyToOne
+    @JoinColumn(name="workplaceid", nullable=true)
+    private Workplace workplace=null;
 
 
-    public Booking(Long id, Date timestart, Date timeend, String status, String employeename) {
+    public Booking(Long id, Date timestart, Date timeend, String status) {
         this.id = id;
         this.timestart = timestart;
         this.timeend = timeend;
         this.status = status;
-        this.employeename = employeename;
     }
 
     //@Id
@@ -81,12 +88,12 @@ public class Booking {
         this.status = status;
     }
 
-    public String getEmployeename() {
-        return employeename;
+    public Employee getEmployee() {
+        return employee;
     }
 
-    public void setEmployeename(String employeename) {
-        this.employeename = employeename;
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 
     public Workplace getWorkplace() {
@@ -102,11 +109,11 @@ public class Booking {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Booking booking = (Booking) o;
-        return Objects.equals(id, booking.id) && Objects.equals(timestart, booking.timestart) && Objects.equals(timeend, booking.timeend) && Objects.equals(status, booking.status) && Objects.equals(employeename, booking.employeename) && Objects.equals(workplace, booking.workplace);
+        return Objects.equals(id, booking.id) && Objects.equals(timestart, booking.timestart) && Objects.equals(timeend, booking.timeend) && Objects.equals(status, booking.status) && Objects.equals(employee, booking.employee) && Objects.equals(workplace, booking.workplace);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, timestart, timeend, status, employeename, workplace);
+        return Objects.hash(id, timestart, timeend, status, employee, workplace);
     }
 }
