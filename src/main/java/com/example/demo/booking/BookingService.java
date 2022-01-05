@@ -2,6 +2,7 @@ package com.example.demo.booking;
 
 import com.example.demo.building.Workplace;
 import com.example.demo.building.WorkplaceRepository;
+import com.example.demo.employee.Employee;
 import com.example.demo.employee.EmployeeRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,6 +57,31 @@ public class BookingService {
         return booking1.getWorkplace();
     }
 
+    @GetMapping
+    public  List <Employee> getAllPhoneNumbersofEmployees (){
+
+        Date currentDate= new Date();
+        List <Employee> employeesInOffice= new ArrayList<>();
+        List <Employee> employeesHome = new ArrayList<>();
+        List <Booking> bookings  = bookingRepository.findAll();
+        for (int i = 0; i<bookings.size(); i++) {
+            Booking currentBooking = bookings.get(i);
+            if (currentBooking.getTimestart().after(currentDate)){
+                if (currentBooking.getTimeend().before(currentDate)){
+                    Employee employeetmp = currentBooking.getEmployee();
+                    employeetmp.setCurrentphonenumber(currentBooking.getWorkplace().getPhone());
+                    employeesInOffice.add(employeetmp);
+                }
+            }else {
+                Employee employeetmp = currentBooking.getEmployee();
+                employeetmp.setCurrentphonenumber(employeetmp.getPhonenumber());
+                employeesHome.add(employeetmp);
+            }
+        }
+        employeesInOffice.addAll(employeesHome);
+        return employeesInOffice;
+    }
+
 //    @GetMapping
 //    public List <Booking> findByEmployeeName(String employeename){
 //        return bookingRepository.findByEmployeename(employeename);
@@ -81,6 +109,12 @@ public class BookingService {
     public Booking updateBookingbyIDSetStatusAkzeptiert(Long id){
         Booking booking1  = bookingRepository.findById(id).orElse(null);
         booking1.setStatus("akzeptiert");
+        Employee employee=booking1.getEmployee();
+        Mail mail = new Mail ();
+        mail.setpName(employee.getFirstname()+" "+employee.getLastname());
+        mail.setpStatus("akzeptiert");
+        mail.setpMailAdresse(employee.getEmail());
+        mail.sendMail();
         return bookingRepository.save(booking1);
     }
 
@@ -89,6 +123,12 @@ public class BookingService {
     public Booking updateBookingbyIDSetStatusAbgelehnt(Long id){
         Booking booking1  = bookingRepository.findById(id).orElse(null);
         booking1.setStatus("abgelehnt");
+        Employee employee=booking1.getEmployee();
+        Mail mail = new Mail ();
+        mail.setpName(employee.getFirstname()+" "+employee.getLastname());
+        mail.setpStatus("abgelehnt");
+        mail.setpMailAdresse(employee.getEmail());
+        mail.sendMail();
         return bookingRepository.save(booking1);
     }
 
@@ -97,6 +137,13 @@ public class BookingService {
     public Booking updateBookingbyIDSetStatusSchwebend(Long id){
         Booking booking1  = bookingRepository.findById(id).orElse(null);
         booking1.setStatus("schwebend");
+        Employee employee=booking1.getEmployee();
+        Mail mail = new Mail ();
+        mail.setpName(employee.getFirstname()+" "+employee.getLastname());
+        mail.setpStatus("schwebend");
+        mail.setText(booking1.getWorkplace().getId().toString());
+        mail.setpMailAdresse(employee.getEmail());
+        mail.sendMail();
         return bookingRepository.save(booking1);
     }
 

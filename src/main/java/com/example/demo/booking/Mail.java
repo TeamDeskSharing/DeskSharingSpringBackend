@@ -9,6 +9,7 @@ public class Mail {
     private String pname;
     private String pmailadresse;
     private String pstatus;
+    private String text;
 
     final String username = "DS.WS.2021.2022@gmail.com";
     final String password = "SoftwareprojektFun#";
@@ -43,7 +44,7 @@ public class Mail {
             );
             message.setSubject("Info DeskSharingApp");
             message.setText("Dear "+ pname+","
-                    + "\n\n Der Status der Reservierung lautet: "+ pstatus);
+                    + "\n\n Der Status der Reservierung vom: "+text+ " lautet: "+ pstatus);
 
             Transport.send(message);
 
@@ -85,6 +86,13 @@ public class Mail {
 
     public void setpStatus(String pStatus) {
         this.pstatus = pStatus;
+    }
+
+    public String getText() {
+        return text;
+    }
+    public void setText(String text) {
+        this.text = text;
     }
 
     @Override

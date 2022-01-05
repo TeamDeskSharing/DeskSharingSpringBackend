@@ -38,6 +38,7 @@ public class WorkplaceService {
         return workplaceRepository.findByphone(phone);
     }
 
+
     /*@GetMapping
     public List <Booking> getAllBookingsOfWorkplace(long id){
         Workplace workplace1  = workplaceRepository.findById(id).orElse(null);

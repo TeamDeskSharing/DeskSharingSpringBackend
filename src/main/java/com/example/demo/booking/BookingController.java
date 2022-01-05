@@ -1,6 +1,7 @@
 package com.example.demo.booking;
 
 import com.example.demo.building.Workplace;
+import com.example.demo.employee.Employee;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -36,6 +37,11 @@ public class BookingController {
         return bookingService.getWorkplaceByBookingID(id);
     }
 
+    @GetMapping("/getCurrentPhoneNumberofEmployees")
+    public List <Employee> getWorkplaceByBookingID() {
+        return bookingService.getAllPhoneNumbersofEmployees();
+    }
+
     @GetMapping("/findBookingbyID/{id}")
     public Booking getBookingsByName(@PathVariable Long id) {
         return bookingService.getBooking(id);
@@ -52,7 +58,7 @@ public class BookingController {
     }
     @PutMapping("/updateAbgelehnt/{id}")
     public Booking updateBookingbyIDSetStatusAbgelehnt(@PathVariable Long id){
-        return bookingService.updateBookingbyIDSetStatusAkzeptiert(id);
+        return bookingService.updateBookingbyIDSetStatusAbgelehnt(id);
     }
     @PutMapping("/updateSchwebend/{id}")
     public Booking updateBookingbyIDSetStatusSchwebend(@PathVariable Long id){
