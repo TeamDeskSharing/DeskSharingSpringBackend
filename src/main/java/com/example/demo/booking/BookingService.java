@@ -163,6 +163,33 @@ public class BookingService {
         return bookingRepository.save(booking1);
     }
 
+    public Booking saveBookingwithids(Booking booking, Long employeeid, Long workplaceid) {
+        Booking bookingtmp = booking;
+        bookingtmp.setEmployee(employeeRepository.findById(employeeid).orElse(null));
+        bookingtmp.setWorkplace(workplaceRepository.findById(workplaceid).orElse(null));
+        Date currentDate= new Date();
+        if (bookingtmp.getTimeend().before(bookingtmp.getTimestart())){
+            System.err.println("Startzeit vor Endzeit");
+            return null;
+        }
+        if (bookingtmp.getTimeend().before(currentDate)&&bookingtmp.getTimestart().before(currentDate)){
+            System.err.println("Zeit liegt in der Vergangenheit");
+            return null;
+        }
+        List <Booking> bookinstemp = bookingRepository.findByWorkplace(bookingtmp.getWorkplace());
+
+        for (Booking currentBooking:bookinstemp) {
+//            Booking currentBooking= bookinstemp.get(i);
+            boolean ueberschneidung = bookingtmp.getTimeend().compareTo(currentBooking.getTimestart()) < 0
+                    || currentBooking.getTimeend().compareTo(bookingtmp.getTimeend()) < 0;
+            if (ueberschneidung == false){
+                System.err.println("Zeit weißt Ueberschneidungen auf");
+                return null;
+            }
+        }
+        return bookingRepository.save(bookingtmp);
+    }
+
 
 /*    @Override
     public ResponseEntity<Booking> updateBookingById(Long id, Booking booking){
