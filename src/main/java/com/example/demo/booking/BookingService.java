@@ -57,6 +57,11 @@ public class BookingService {
         return booking1.getWorkplace();
     }
 
+    public List<Booking> getBookingByEmployee(long id) {
+        Employee employee = employeeRepository.findById(id).orElse(null);
+        return bookingRepository.findByEmployee(employee);
+    }
+
     @GetMapping
     public  List <Employee> getAllPhoneNumbersofEmployees (){
 
@@ -189,6 +194,7 @@ public class BookingService {
         }
         return bookingRepository.save(bookingtmp);
     }
+
 
 
 /*    @Override
