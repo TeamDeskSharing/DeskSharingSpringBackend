@@ -68,8 +68,11 @@ public class BookingService {
         Date currentDate= new Date();
         List <Employee> employeesInOffice= new ArrayList<>();
         List <Employee> employeesHome = new ArrayList<>();
+        List <Employee> employeesAll = employeeRepository.findAll();
         List <Booking> bookings  = bookingRepository.findAll();
+
         for (int i = 0; i<bookings.size(); i++) {
+            System.out.println(i);
             Booking currentBooking = bookings.get(i);
             if (currentBooking.getTimestart().after(currentDate)){
                 if (currentBooking.getTimeend().before(currentDate)){
@@ -79,11 +82,22 @@ public class BookingService {
                 }
             }else {
                 Employee employeetmp = currentBooking.getEmployee();
-                employeetmp.setCurrentphonenumber(employeetmp.getPhonenumber());
-                employeesHome.add(employeetmp);
+                try {
+                    employeetmp.setCurrentphonenumber(employeetmp.getPhonenumber());
+                    employeesHome.add(employeetmp);
+                } catch (NullPointerException ioe) {
+
+                }
             }
         }
         employeesInOffice.addAll(employeesHome);
+        for (Employee employeeCurrent:employeesAll){
+            if(employeesInOffice.contains(employeeCurrent)){
+            }else{
+                employeesInOffice.add(employeeCurrent);
+            }
+        }
+
         return employeesInOffice;
     }
 

@@ -43,7 +43,7 @@ public class BookingController {
     }
 
     @GetMapping("/getCurrentPhoneNumberofEmployees")
-    public List <Employee> getWorkplaceByBookingID() {
+    public List <Employee> getAllPhoneNumbersofEmployees() {
         return bookingService.getAllPhoneNumbersofEmployees();
     }
 
