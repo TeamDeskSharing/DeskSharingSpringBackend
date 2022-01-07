@@ -33,6 +33,7 @@ public class Workplace {
 
     private String phone;
 
+
     //@OneToMany(targetEntity=Booking.class, mappedBy="workplace",
     //        fetch=FetchType.EAGER)
     //private List<Booking> bookings;
@@ -59,7 +60,7 @@ public class Workplace {
         this.phone = phone;
     }
 
-    //public List<Booking> getBookings() {
+//public List<Booking> getBookings() {
     //    return bookings;
     //}
     //public void setBookings(List<Booking> bookings) {

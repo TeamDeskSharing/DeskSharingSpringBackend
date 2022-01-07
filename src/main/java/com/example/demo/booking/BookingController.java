@@ -52,6 +52,11 @@ public class BookingController {
         return bookingService.getBooking(id);
     }
 
+    @GetMapping("/getCurrentTakenWorksplaces")
+    public List<Workplace> getWorkplaceByBookingID() {
+        return bookingService.getCurrentTakenWorkplaces();
+    }
+
     @PutMapping("/update")
     public Booking updateBooking(@RequestBody Booking booking){
         return bookingService.updateBooking(booking);
@@ -78,6 +83,11 @@ public class BookingController {
     @PutMapping("/addEmployeeToBooking/{id}/{wid}")
     public Booking addEmployeeToBooking(@PathVariable Long id,@PathVariable Long wid){
         return bookingService.addEmployee(id,wid);
+    }
+
+    @PutMapping("/leaveWorkspace/{eid}")
+    public Booking leaveWorkspace(@PathVariable Long eid){
+        return bookingService.leaveWorkspace(eid);
     }
 
     @PostMapping("/saveBooking/{id}")

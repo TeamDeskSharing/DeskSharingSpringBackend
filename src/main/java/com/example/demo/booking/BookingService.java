@@ -38,6 +38,8 @@ public class BookingService {
 
     @PostMapping
     public Booking saveBooking(Booking booking){ //funktioniert auch als list
+        Date date = new Date();
+        System.out.print(date);
         return bookingRepository.save(booking);
     }
 
@@ -100,6 +102,44 @@ public class BookingService {
 
         return employeesInOffice;
     }
+
+    @GetMapping
+    public  List <Workplace> getCurrentTakenWorkplaces (){
+
+        Date currentDate= new Date();
+        List <Workplace> workplacesBooked= new ArrayList<>();
+        List <Booking> bookings  = bookingRepository.findAll();
+
+
+
+        for (int i = 0; i<bookings.size(); i++) {
+            //System.out.println(i);
+            Booking currentBooking = bookings.get(i);
+            System.out.println(currentDate);
+            System.out.println(currentBooking.getTimestart());
+            System.out.println(currentBooking.getTimeend());
+                if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))){
+                    System.out.println("Endzeit nach Jetztzeit");
+                    workplacesBooked.add(currentBooking.getWorkplace());
+                }
+        }
+
+//            if (currentBooking.getTimestart().before(currentDate)){
+//                System.out.println("Startzeit vor Jetztzeit");
+//                if (currentBooking.getTimeend().after(currentDate)){
+//                    System.out.println("Endzeit nach Jetztzeit");
+//                    workplacesBooked.add(currentBooking.getWorkplace());
+//                }
+//            }
+
+
+//            if (workplacesBooked.isEmpty()){
+//            return null;
+//            }else{
+        return workplacesBooked;
+    }
+
+
 
 //    @GetMapping
 //    public List <Booking> findByEmployeeName(String employeename){
@@ -209,6 +249,23 @@ public class BookingService {
         return bookingRepository.save(bookingtmp);
     }
 
+    @PutMapping
+    public Booking leaveWorkspace(Long emid){
+        Employee employee = employeeRepository.findById(emid).orElse(null);
+        List <Booking> bookings = bookingRepository.findByEmployee(employee);
+        Date currentDate= new Date();
+        for (Booking currentBooking:bookings) {
+            if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))){
+                System.out.println(currentDate.before(currentBooking.getTimestart()));
+                System.out.println(currentDate.before(currentBooking.getTimeend()));
+                System.out.println(currentDate);
+                currentBooking.setTimeend(currentDate);
+                bookingRepository.save(currentBooking);
+                return currentBooking;
+            }
+        }
+        return null;
+    }
 
 
 /*    @Override
