@@ -48,10 +48,7 @@ public class Booking {
 
 
     public Booking(Long id, Date timestart, Date timeend, String status) {
-        this.id = id;
-        this.timestart = timestart;
-        this.timeend = timeend;
-        this.status = status;
+
     }
 
     //@Id

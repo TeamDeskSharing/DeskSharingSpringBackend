@@ -38,8 +38,16 @@ public class BookingService {
 
     @PostMapping
     public Booking saveBooking(Booking booking){ //funktioniert auch als list
-        Date date = new Date();
-        System.out.print(date);
+//        final long HOUR = 3600*1000; // in milli-seconds.
+//        long timestartTMP = booking.getTimestart().getTime();
+//        timestartTMP=timestartTMP-HOUR;
+//        long timeendTMP = booking.getTimeend().getTime();
+//        timeendTMP=timeendTMP-HOUR;
+//        Date datetmp=new Date();
+//        datetmp.setTime(timeendTMP);
+//        booking.setTimeend(datetmp);
+//        datetmp.setTime(timestartTMP);
+//        booking.setTimestart(datetmp);
         return bookingRepository.save(booking);
     }
 
@@ -76,12 +84,10 @@ public class BookingService {
         for (int i = 0; i<bookings.size(); i++) {
             System.out.println(i);
             Booking currentBooking = bookings.get(i);
-            if (currentBooking.getTimestart().after(currentDate)){
-                if (currentBooking.getTimeend().before(currentDate)){
+            if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))){
                     Employee employeetmp = currentBooking.getEmployee();
                     employeetmp.setCurrentphonenumber(currentBooking.getWorkplace().getPhone());
                     employeesInOffice.add(employeetmp);
-                }
             }else {
                 Employee employeetmp = currentBooking.getEmployee();
                 try {
