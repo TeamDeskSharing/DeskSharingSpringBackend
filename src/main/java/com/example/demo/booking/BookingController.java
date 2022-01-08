@@ -11,6 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/booking")
 @AllArgsConstructor
+@CrossOrigin(origins = "http://localhost:3000")
 public class BookingController {
 
     @Autowired
@@ -90,7 +91,7 @@ public class BookingController {
         return bookingService.leaveWorkspace(eid);
     }
 
-    @PostMapping("/saveBooking/{id}")
+    @PostMapping("/saveBooking/")
     public Booking saveBooking(@RequestBody Booking booking){
         return bookingService.saveBooking(booking);
     }
