@@ -27,4 +27,5 @@ public interface EmployeeRepository
     //customized CRUD methods
 
     Employee findByEmail(String email);
+    Employee findByUsername(String username);
 }

@@ -228,9 +228,9 @@ public class BookingService {
         return bookingRepository.save(booking1);
     }
 
-    public Booking saveBookingwithids(Booking booking, Long employeeid, Long workplaceid) {
+    public Booking saveBookingwithids(Booking booking, String username, Long workplaceid) {
         Booking bookingtmp = booking;
-        bookingtmp.setEmployee(employeeRepository.findById(employeeid).orElse(null));
+        bookingtmp.setEmployee(employeeRepository.findByUsername(username));
         bookingtmp.setWorkplace(workplaceRepository.findById(workplaceid).orElse(null));
         Date currentDate= new Date();
         if (bookingtmp.getTimeend().before(bookingtmp.getTimestart())){

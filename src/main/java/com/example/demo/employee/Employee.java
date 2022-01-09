@@ -36,6 +36,7 @@ public class Employee {
     private boolean homeoffice;
     private String phonenumber;
     private String currentphonenumber;
+    private String username;
 
 
     public Employee(Long id, String firstname, String lastname, String email, boolean homeoffice, String phonenumber) {
@@ -103,6 +104,14 @@ public class Employee {
 
     public void setCurrentphonenumber(String currentphonenumber) {
         this.currentphonenumber = currentphonenumber;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override

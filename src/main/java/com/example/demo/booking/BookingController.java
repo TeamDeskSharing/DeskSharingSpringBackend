@@ -96,9 +96,9 @@ public class BookingController {
         return bookingService.saveBooking(booking);
     }
 
-    @PostMapping("/saveBookingWithIDs/{eid}/{wid}")
-    public Booking saveBookingwithids(@RequestBody Booking booking,@PathVariable Long eid,@PathVariable Long wid){
-        return bookingService.saveBookingwithids(booking,eid,wid);
+    @PostMapping("/saveBookingWithIDs/{user}/{wid}")
+    public Booking saveBookingwithids(@RequestBody Booking booking,@PathVariable String user,@PathVariable Long wid){
+        return bookingService.saveBookingwithids(booking,user,wid);
     }
 
 
