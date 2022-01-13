@@ -39,10 +39,11 @@ public class Employee {
     private String username;
 
 
-    public Employee(Long id, String firstname, String lastname, String email, boolean homeoffice, String phonenumber) {
+    public Employee(Long id, String firstname, String lastname, String username, String email, boolean homeoffice, String phonenumber) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
+        this.username = username;
         this.email = email;
         this.homeoffice = homeoffice;
         this.phonenumber = phonenumber;

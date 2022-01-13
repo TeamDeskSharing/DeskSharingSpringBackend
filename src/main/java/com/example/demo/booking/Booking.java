@@ -38,11 +38,11 @@ public class Booking {
     private String status;
 
 
-    @ManyToOne
+    @ManyToOne( )
     @JoinColumn(name="employeeid", nullable=true)
     private Employee employee=null;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name="workplaceid", nullable=true)
     private Workplace workplace=null;
 

@@ -43,6 +43,10 @@ public class EmployeeService {
         employeeRepository.deleteById(id);
         return "employee deleted";
     }
+    @GetMapping
+    public Employee getEmployeeByUsername(String username){
+        return employeeRepository.findByUsername(username);
+    }
 
     @PutMapping
     public Employee updateEmployee(Employee employee){

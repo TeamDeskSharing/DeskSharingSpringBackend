@@ -29,6 +29,12 @@ public class EmployeeController {
 
     }
 
+    @GetMapping("/findEmployeeByUsername/{username}")
+    public Employee getEmployeeByName(@PathVariable String username){
+        return employeeService.getEmployeeByUsername(username);
+
+    }
+
     @GetMapping("/findEmployee/{email}")
     public Employee getEmployeeByEmail(@PathVariable String email){
         return employeeService.getEmployeeByEmail(email);
