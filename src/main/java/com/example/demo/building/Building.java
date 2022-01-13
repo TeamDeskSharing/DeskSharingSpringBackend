@@ -20,12 +20,11 @@ public class Building {
             sequenceName = "building_sequence",
             allocationSize = 1
     )
-    @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "building_sequence"
     )
-
+    @Id
     private Long id;
 
     private String description;
@@ -35,7 +34,7 @@ public class Building {
         this.description = description;
     }
 
-    @Id
+
 
     public Long getId() {
         return id;

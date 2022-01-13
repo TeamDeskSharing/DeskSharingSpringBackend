@@ -19,11 +19,11 @@ public class Office {
             sequenceName = "office_sequence",
             allocationSize = 1
     )
-    @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
             generator = "office_sequence"
     )
+    @Id
     private Long id;
 
     private String description;
@@ -33,7 +33,11 @@ public class Office {
         this.description = description;
     }
 
-    @Id
+    @ManyToOne()
+    @JoinColumn(name="buildingid", nullable=true)
+    private Building building=null;
+
+
 
     public Long getId() {
         return id;

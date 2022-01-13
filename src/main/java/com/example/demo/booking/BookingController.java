@@ -37,12 +37,14 @@ public class BookingController {
     public List<Booking> getBookingsByName(@PathVariable long id) {
         return bookingService.getBookingByEmployee(id);
     }
-
+    @GetMapping("/findBookingsByEmployee/{username}")
+    public List<Booking> getBookingByUsername(@PathVariable String username) {
+        return bookingService.getBookingByUsername(username);
+    }
     @GetMapping("/getWorkplaceByBookingID/{id}")
     public Workplace getWorkplaceByBookingID(@PathVariable long id) {
         return bookingService.getWorkplaceByBookingID(id);
     }
-
     @GetMapping("/getCurrentPhoneNumberofEmployees")
     public List <Employee> getAllPhoneNumbersofEmployees() {
         return bookingService.getAllPhoneNumbersofEmployees();

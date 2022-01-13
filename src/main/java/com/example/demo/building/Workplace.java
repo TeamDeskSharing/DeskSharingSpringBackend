@@ -1,6 +1,7 @@
 package com.example.demo.building;
 
 import com.example.demo.booking.Booking;
+import com.example.demo.employee.Employee;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -32,6 +33,10 @@ public class Workplace {
     private Long id;
 
     private String phone;
+
+    @ManyToOne()
+    @JoinColumn(name="officeid", nullable=true)
+    private Office office=null;
 
 
     //@OneToMany(targetEntity=Booking.class, mappedBy="workplace",

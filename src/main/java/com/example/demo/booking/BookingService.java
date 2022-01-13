@@ -66,6 +66,11 @@ public class BookingService {
         Booking booking1  = bookingRepository.findById(id).orElse(null);
         return booking1.getWorkplace();
     }
+    @GetMapping
+    public List<Booking> getBookingByUsername(String username) {
+        Employee employee = employeeRepository.findByUsername(username);
+        return bookingRepository.findByEmployee(employee);
+    }
 
     public List<Booking> getBookingByEmployee(long id) {
         Employee employee = employeeRepository.findById(id).orElse(null);
