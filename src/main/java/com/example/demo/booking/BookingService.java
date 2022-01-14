@@ -88,18 +88,24 @@ public class BookingService {
 
         for (int i = 0; i<bookings.size(); i++) {
             System.out.println(i);
-            Booking currentBooking = bookings.get(i);
-            if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))){
+
+
+
+                Booking currentBooking = bookings.get(i);
+            if (currentBooking.getStatus().equals("akzeptiert")) {
+
+                if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))) {
                     Employee employeetmp = currentBooking.getEmployee();
                     employeetmp.setCurrentphonenumber(currentBooking.getWorkplace().getPhone());
                     employeesInOffice.add(employeetmp);
-            }else {
-                Employee employeetmp = currentBooking.getEmployee();
-                try {
-                    employeetmp.setCurrentphonenumber(employeetmp.getPhonenumber());
-                    employeesHome.add(employeetmp);
-                } catch (NullPointerException ioe) {
+                } else {
+                    Employee employeetmp = currentBooking.getEmployee();
+                    try {
+                        employeetmp.setCurrentphonenumber(employeetmp.getPhonenumber());
+                        employeesHome.add(employeetmp);
+                    } catch (NullPointerException ioe) {
 
+                    }
                 }
             }
         }
@@ -167,7 +173,8 @@ public class BookingService {
             if (currentBooking.getStatus().equals("akzeptiert")) {
                 if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))) {
                     System.out.println("Endzeit nach Jetztzeit");
-                    if (currentBooking.getWorkplace().getOffice().equals(id)) {
+                    System.out.println(id);
+                    if (currentBooking.getWorkplace().getOffice().getId().equals(id)) {
                         workplacesBooked.add(currentBooking.getWorkplace());
                     } else {
                         System.out.println("Arbeitsplatz nicht im Office: " + id);
@@ -318,6 +325,32 @@ public class BookingService {
             }
         }
         return null;
+    }
+
+    public Booking saveBookingwithids(Booking booking) {
+       // Booking bookingtmp = booking;
+        Date currentDate= new Date();
+        if (booking.getTimeend().before(booking.getTimestart())){
+            System.err.println("Startzeit vor Endzeit");
+            return null;
+        }
+        if (booking.getTimeend().before(currentDate)&&booking.getTimestart().before(currentDate)){
+            System.err.println("Zeit liegt in der Vergangenheit");
+            return null;
+        }
+        List <Booking> bookinstemp = bookingRepository.findByWorkplace(booking.getWorkplace());
+
+        for (Booking currentBooking:bookinstemp) {
+//            Booking currentBooking= bookinstemp.get(i);
+            boolean ueberschneidung = booking.getTimeend().compareTo(currentBooking.getTimestart()) < 0
+                    || currentBooking.getTimeend().compareTo(booking.getTimeend()) < 0;
+            if (ueberschneidung == false){
+                System.err.println("Zeit weißt Ueberschneidungen auf");
+                return null;
+            }
+        }
+
+        return bookingRepository.save(booking);
     }
 
 

@@ -61,7 +61,7 @@ public class BookingController {
     }
 
     @GetMapping("/getCurrentTakenWorksplacesByOffice/{id}")
-    public List<Workplace> getCurrentTakenWorkplacesByOffice(Long id) {
+    public List<Workplace> getCurrentTakenWorkplacesByOffice(@PathVariable Long id) {
         return bookingService.getCurrentTakenWorkplacesByOffice(id);
     }
 
@@ -103,9 +103,9 @@ public class BookingController {
         return bookingService.saveBooking(booking);
     }
 
-    @PostMapping("/saveBookingWithIDs/{user}/{wid}")
-    public Booking saveBookingwithids(@RequestBody Booking booking,@PathVariable String user,@PathVariable Long wid){
-        return bookingService.saveBookingwithids(booking,user,wid);
+    @PostMapping("/saveBookingWithIDs/")
+    public Booking saveBookingwithids(@RequestBody Booking booking){
+        return bookingService.saveBookingwithids(booking);
     }
 
 
