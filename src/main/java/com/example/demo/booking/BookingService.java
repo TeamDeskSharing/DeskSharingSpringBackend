@@ -164,13 +164,14 @@ public class BookingService {
             System.out.println(currentDate);
             System.out.println(currentBooking.getTimestart());
             System.out.println(currentBooking.getTimeend());
-            if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))){
-                System.out.println("Endzeit nach Jetztzeit");
-                if (currentBooking.getWorkplace().getOffice().equals(id)) {
-                    workplacesBooked.add(currentBooking.getWorkplace());
-                }else
-                {
-                    System.out.println("Arbeitsplatz nicht im Office: "+ id);
+            if (currentBooking.getStatus().equals("akzeptiert")) {
+                if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))) {
+                    System.out.println("Endzeit nach Jetztzeit");
+                    if (currentBooking.getWorkplace().getOffice().equals(id)) {
+                        workplacesBooked.add(currentBooking.getWorkplace());
+                    } else {
+                        System.out.println("Arbeitsplatz nicht im Office: " + id);
+                    }
                 }
             }
         }

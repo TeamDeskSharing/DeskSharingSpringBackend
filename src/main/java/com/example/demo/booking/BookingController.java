@@ -61,7 +61,7 @@ public class BookingController {
     }
 
     @GetMapping("/getCurrentTakenWorksplacesByOffice/{id}")
-    public List<Workplace> getCurrentTakenWorkplacesByOffice(long id) {
+    public List<Workplace> getCurrentTakenWorkplacesByOffice(Long id) {
         return bookingService.getCurrentTakenWorkplacesByOffice(id);
     }
 
