@@ -36,7 +36,7 @@ public class Booking {
     private Date timestart;
     private Date timeend;
     private String status;
-
+    private String username;
 
     @ManyToOne( )
     @JoinColumn(name="employeeid", nullable=true)
@@ -99,6 +99,14 @@ public class Booking {
 
     public void setWorkplace(Workplace workplace) {
         this.workplace = workplace;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Override

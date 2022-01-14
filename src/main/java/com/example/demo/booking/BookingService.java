@@ -274,6 +274,7 @@ public class BookingService {
 
     public Booking saveBookingwithids(Booking booking, String username, Long workplaceid) {
         Booking bookingtmp = booking;
+        bookingtmp.setUsername(username);
         bookingtmp.setEmployee(employeeRepository.findByUsername(username));
         bookingtmp.setWorkplace(workplaceRepository.findById(workplaceid).orElse(null));
         Date currentDate= new Date();
@@ -296,6 +297,7 @@ public class BookingService {
                 return null;
             }
         }
+
         return bookingRepository.save(bookingtmp);
     }
 
