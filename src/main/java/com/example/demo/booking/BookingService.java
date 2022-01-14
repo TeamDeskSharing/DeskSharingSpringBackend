@@ -86,18 +86,18 @@ public class BookingService {
         List <Employee> employeesAll = employeeRepository.findAll();
         List <Booking> bookings  = bookingRepository.findAll();
 
-        for (int i = 0; i<bookings.size(); i++) {
-            System.out.println(i);
+        for (Booking currentBooking:bookings) {
+            System.out.println(currentBooking);
 
 
-
-                Booking currentBooking = bookings.get(i);
             if (currentBooking.getStatus().equals("akzeptiert")) {
 
                 if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))) {
                     Employee employeetmp = currentBooking.getEmployee();
-                    employeetmp.setCurrentphonenumber(currentBooking.getWorkplace().getPhone());
-                    employeesInOffice.add(employeetmp);
+                    if(!(employeesInOffice.contains(employeetmp))) {
+                        employeetmp.setCurrentphonenumber(currentBooking.getWorkplace().getPhone());
+                        employeesInOffice.add(employeetmp);
+                    }
                 } else {
                     Employee employeetmp = currentBooking.getEmployee();
                     try {
