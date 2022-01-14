@@ -60,6 +60,11 @@ public class BookingController {
         return bookingService.getCurrentTakenWorkplaces();
     }
 
+    @GetMapping("/getCurrentTakenWorksplacesByOffice/{id}")
+    public List<Workplace> getCurrentTakenWorkplacesByOffice(long id) {
+        return bookingService.getCurrentTakenWorkplacesByOffice(id);
+    }
+
     @PutMapping("/update")
     public Booking updateBooking(@RequestBody Booking booking){
         return bookingService.updateBooking(booking);

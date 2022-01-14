@@ -149,7 +149,46 @@ public class BookingService {
 //            }else{
         return workplacesBooked;
     }
+    @GetMapping
+    public  List <Workplace> getCurrentTakenWorkplacesByOffice (long id){
 
+        Date currentDate= new Date();
+        List <Workplace> workplacesBooked= new ArrayList<>();
+        List <Booking> bookings  = bookingRepository.findAll();
+
+
+
+        for (int i = 0; i<bookings.size(); i++) {
+            //System.out.println(i);
+            Booking currentBooking = bookings.get(i);
+            System.out.println(currentDate);
+            System.out.println(currentBooking.getTimestart());
+            System.out.println(currentBooking.getTimeend());
+            if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))){
+                System.out.println("Endzeit nach Jetztzeit");
+                if (currentBooking.getWorkplace().getOffice().equals(id)) {
+                    workplacesBooked.add(currentBooking.getWorkplace());
+                }else
+                {
+                    System.out.println("Arbeitsplatz nicht im Office: "+ id);
+                }
+            }
+        }
+
+//            if (currentBooking.getTimestart().before(currentDate)){
+//                System.out.println("Startzeit vor Jetztzeit");
+//                if (currentBooking.getTimeend().after(currentDate)){
+//                    System.out.println("Endzeit nach Jetztzeit");
+//                    workplacesBooked.add(currentBooking.getWorkplace());
+//                }
+//            }
+
+
+//            if (workplacesBooked.isEmpty()){
+//            return null;
+//            }else{
+        return workplacesBooked;
+    }
 
 
 //    @GetMapping
