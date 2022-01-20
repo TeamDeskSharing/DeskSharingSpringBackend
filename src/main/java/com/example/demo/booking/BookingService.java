@@ -155,6 +155,29 @@ public class BookingService {
 //            }else{
         return workplacesBooked;
     }
+
+    @GetMapping
+    public List<Booking> getBlockedBookingsByOffice(long id){
+        List <Booking> blockedBookings= new ArrayList<>();
+        List <Booking> bookings  = bookingRepository.findAll();
+
+        Date currentDate= new Date();
+
+        for (Booking currentBooking:bookings) {
+
+
+            if(currentBooking.getStatus().equals("akzeptiert") && (currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))){
+
+                if (currentBooking.getWorkplace().getOffice().getId().equals(id)) {
+                    blockedBookings.add(currentBooking);
+                } else {
+                    System.out.println("Arbeitsplatz nicht im Office: " + id);
+                }
+            }
+        }
+
+            return blockedBookings;
+    }
     @GetMapping
     public  List <Workplace> getCurrentTakenWorkplacesByOffice (long id){
 
@@ -164,15 +187,22 @@ public class BookingService {
 
 
 
+
+
+
         for (int i = 0; i<bookings.size(); i++) {
             //System.out.println(i);
             Booking currentBooking = bookings.get(i);
             System.out.println(currentDate);
             System.out.println(currentBooking.getTimestart());
             System.out.println(currentBooking.getTimeend());
+            System.out.println("TEST1");
+
             if (currentBooking.getStatus().equals("akzeptiert")) {
-                if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))) {
+                System.out.println("TEST2");
+                if ((currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))) {
                     System.out.println("Endzeit nach Jetztzeit");
+                    System.out.print("ID IST: ");
                     System.out.println(id);
                     if (currentBooking.getWorkplace().getOffice().getId().equals(id)) {
                         workplacesBooked.add(currentBooking.getWorkplace());
@@ -182,6 +212,7 @@ public class BookingService {
                 }
             }
         }
+
 
 //            if (currentBooking.getTimestart().before(currentDate)){
 //                System.out.println("Startzeit vor Jetztzeit");

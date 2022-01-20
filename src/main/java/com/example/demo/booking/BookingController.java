@@ -65,6 +65,11 @@ public class BookingController {
     public List<Workplace> getCurrentTakenWorkplacesByOffice(@PathVariable Long id) {
         return bookingService.getCurrentTakenWorkplacesByOffice(id);
     }
+    @GetMapping("/getBlockedBookingsByOffice/{id}")
+        public List<Booking> getBlockedBookingsByOffice(@PathVariable Long id){
+            return bookingService.getBlockedBookingsByOffice(id);
+
+    }
 
     @PutMapping("/update")
     public Booking updateBooking(@RequestBody Booking booking){
