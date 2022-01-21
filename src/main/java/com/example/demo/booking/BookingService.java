@@ -85,12 +85,14 @@ public class BookingService {
                     Employee employeetmp = currentBooking.getEmployee();
                     if(!(employeesInOffice.contains(employeetmp))) {
                         employeetmp.setCurrentphonenumber(currentBooking.getWorkplace().getPhone());
+                        employeeRepository.save(employeetmp);
                         employeesInOffice.add(employeetmp);
                     }
                 } else {
                     Employee employeetmp = currentBooking.getEmployee();
                     try {
                         employeetmp.setCurrentphonenumber(employeetmp.getPhonenumber());
+                        employeeRepository.save(employeetmp);
                         employeesHome.add(employeetmp);
                     } catch (NullPointerException ioe) {
 
