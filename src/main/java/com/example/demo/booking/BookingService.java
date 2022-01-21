@@ -79,8 +79,6 @@ public class BookingService {
 
         for (Booking currentBooking:bookings) {
             System.out.println(currentBooking);
-
-
             if (currentBooking.getStatus().equals("akzeptiert")) {
 
                 if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))) {
@@ -220,10 +218,15 @@ public class BookingService {
     @CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
     public Booking updateBookingbyIDSetStatusAbgelehnt(Long id){
         Booking booking1  = bookingRepository.findById(id).orElse(null);
+        Date currentDate= new Date();
         booking1.setStatus("abgelehnt");
         Employee employee=booking1.getEmployee();
         Mail mail = new Mail ();
         mail.setpName(employee.getFirstname()+" "+employee.getLastname());
+        if(currentDate.after(booking1.getTimeend())){
+            booking1.setStatus("beendet");
+            return bookingRepository.save(booking1);
+        }
         mail.setpStatus("abgelehnt");
         mail.setpMailAdresse(employee.getEmail());
         mail.sendMail();

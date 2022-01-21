@@ -12,10 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 public class MailController {
 
-
-
     @PostMapping
-    //@PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMINTRAINEE')")
     public void newMail(@RequestBody Mail Mail) {
         System.out.println("registerNewEmployee");
         Mail.sendMail();
