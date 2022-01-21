@@ -33,7 +33,14 @@ public class BookingService {
 
     @GetMapping
     public List<Booking> getAllBookings(){
-        return bookingRepository.findAll();
+        List <Booking> bookings  = bookingRepository.findAll();
+        Date currentDate= new Date();
+        for(Booking currentBooking:bookings){
+            if (currentDate.after(currentBooking.getTimeend())){
+                currentBooking.setStatus("beendet");
+            }
+        }
+        return bookings;
     }
 
     @PostMapping
