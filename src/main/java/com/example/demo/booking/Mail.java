@@ -44,8 +44,10 @@ public class Mail {
                     InternetAddress.parse(pmailadresse)
             );
             message.setSubject("Info DeskSharingApp");
-            message.setText("Dear "+ pname+","
-                    + "\n\n Der Status der Reservierung vom: "+text+ " lautet: "+ pstatus);
+            message.setText("Hallo "+ pname+","
+                    + "\n\n Der Status der Reservierung lautet: "+ pstatus+
+                    "\n\n" +
+                    "\n\n" + "Ihr Desksharing-Team ");
 
             Transport.send(message);
 
