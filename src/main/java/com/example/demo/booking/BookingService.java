@@ -82,7 +82,7 @@ public class BookingService {
             System.out.println(currentBooking);
             if (currentBooking.getStatus().equals("akzeptiert")) {
 
-                if (!(currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))) {
+                if ((currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))) {
                     Employee employeetmp = currentBooking.getEmployee();
                     if(!(employeesInOffice.contains(employeetmp))) {
                         employeetmp.setCurrentphonenumber(currentBooking.getWorkplace().getPhone());
@@ -105,7 +105,7 @@ public class BookingService {
                 try {
                     employeetmp.setCurrentphonenumber(employeetmp.getPhonenumber());
                     employeeRepository.save(employeetmp);
-                    employeesHome.add(employeetmp);
+                    //employeesHome.add(employeetmp);
                 } catch (NullPointerException ioe) {
 
                 }
