@@ -43,6 +43,7 @@ public class BookingService {
 
     @GetMapping
     public Booking getBooking(long id){
+
         return bookingRepository.findById(id).orElse(null);
     }
 
@@ -97,6 +98,16 @@ public class BookingService {
                     } catch (NullPointerException ioe) {
 
                     }
+                }
+            }
+            else {
+                Employee employeetmp = currentBooking.getEmployee();
+                try {
+                    employeetmp.setCurrentphonenumber(employeetmp.getPhonenumber());
+                    employeeRepository.save(employeetmp);
+                    employeesHome.add(employeetmp);
+                } catch (NullPointerException ioe) {
+
                 }
             }
         }
