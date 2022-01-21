@@ -15,7 +15,6 @@ public class WorkplaceController {
     @Autowired
     private WorkplaceService workplaceService;
 
-
     @GetMapping("/getAllWorkplaces")
     public List<Workplace> findAllWorkplaces(){
         return workplaceService.getAllWorkplaces();
@@ -25,12 +24,6 @@ public class WorkplaceController {
     public Workplace findAWorkplaceByID(@PathVariable Long id){
         return workplaceService.getWorkplace(id);
     }
-
-//    @GetMapping("/getAllBookingsOfWorkplace/{id}")
-//    public List <Booking> getAllBookingsOfWorkplace(@PathVariable Long id){
-//        return workplaceService.getAllBookingsOfWorkplace(id);
-//    }
-
 
     @PutMapping("/update")
     public Workplace updateWorkplace(@RequestBody Workplace workplace){

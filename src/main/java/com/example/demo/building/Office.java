@@ -11,6 +11,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
+//Name der DB-Tabelle
 @Table(name = "t_office")
 public class Office {
 
@@ -23,9 +24,9 @@ public class Office {
             strategy = GenerationType.SEQUENCE,
             generator = "office_sequence"
     )
+    //Variablen
     @Id
     private Long id;
-
     private String description;
 
     public Office(Long id, String description) {
@@ -36,8 +37,6 @@ public class Office {
     @ManyToOne()
     @JoinColumn(name="buildingid", nullable=true)
     private Building building=null;
-
-
 
     public Long getId() {
         return id;

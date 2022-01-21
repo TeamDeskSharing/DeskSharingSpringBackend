@@ -13,6 +13,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
+//Name der DB-Tabelle
 @Table(name = "t_employee")
 public class Employee {
 
@@ -27,9 +28,9 @@ public class Employee {
             strategy = GenerationType.SEQUENCE,
             generator = "employee_sequence"
     )
+    //Variablen
 
     private Long id;
-
     private String firstname;
     private String lastname;
     private String email;

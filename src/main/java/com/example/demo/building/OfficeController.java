@@ -15,7 +15,6 @@ public class OfficeController {
     @Autowired
     private OfficeService officeService;
 
-
     @GetMapping("/getAllOffices")
     public List<Office> findAllOffices(){
         return officeService.getAllOffice();

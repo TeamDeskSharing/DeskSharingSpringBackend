@@ -16,6 +16,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
+//Name der DB-Tabelle
 @Table(name = "t_booking")
 public class Booking {
 
@@ -30,14 +31,14 @@ public class Booking {
             generator = "booking_sequence"
     )
     @Id
-
+    //Variablen
     private Long id;
 
     private Date timestart;
     private Date timeend;
     private String status;
     private String username;
-
+    //Datenbankbeziehungen (FKeys)
     @ManyToOne( )
     @JoinColumn(name="employeeid", nullable=true)
     private Employee employee=null;
@@ -46,12 +47,12 @@ public class Booking {
     @JoinColumn(name="workplaceid", nullable=true)
     private Workplace workplace=null;
 
-
+    //Constructor
     public Booking(Long id, Date timestart, Date timeend, String status) {
 
     }
 
-    //@Id
+    //Getter Setter
 
     public Long getId() {
         return id;

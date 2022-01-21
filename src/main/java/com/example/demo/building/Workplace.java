@@ -1,20 +1,16 @@
 package com.example.demo.building;
 
-import com.example.demo.booking.Booking;
-import com.example.demo.employee.Employee;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 @Entity
 @Getter
 @Setter
 @NoArgsConstructor
+//Name der DB-Tabelle
 @Table(name = "t_workplace")
 
 
@@ -29,25 +25,19 @@ public class Workplace {
             strategy = GenerationType.SEQUENCE,
             generator = "workplace_sequence"
     )
+    //Variablen
     @Id
     private Long id;
-
     private String phone;
 
     @ManyToOne()
     @JoinColumn(name="officeid", nullable=true)
     private Office office=null;
 
-
-    //@OneToMany(targetEntity=Booking.class, mappedBy="workplace",
-    //        fetch=FetchType.EAGER)
-    //private List<Booking> bookings;
-
     public Workplace(Long id, String phone) {
         this.id = id;
         this.phone = phone;
     }
-    //@Id
 
     public Long getId() {
         return id;
@@ -64,13 +54,6 @@ public class Workplace {
     public void setPhone(String phone) {
         this.phone = phone;
     }
-
-//public List<Booking> getBookings() {
-    //    return bookings;
-    //}
-    //public void setBookings(List<Booking> bookings) {
-    //    this.bookings = bookings;
-    //}
 
     @Override
     public boolean equals(Object o) {

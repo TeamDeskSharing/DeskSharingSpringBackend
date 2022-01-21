@@ -6,11 +6,14 @@ import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
 public class Mail {
+
+    //Variablen
     private String pname;
     private String pmailadresse;
     private String pstatus;
     private String text;
 
+    // Von uns benutzte Mail fuer das Projekt
     final String username = "DS.WS.2021.2022@gmail.com";
     final String password = "SoftwareprojektFun#";
 
@@ -30,9 +33,7 @@ public class Mail {
                 });
 
         System.out.println(pname);
-
         System.out.println(pmailadresse);
-
         System.out.println(pstatus);
 
         try {

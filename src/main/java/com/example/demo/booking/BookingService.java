@@ -38,16 +38,6 @@ public class BookingService {
 
     @PostMapping
     public Booking saveBooking(Booking booking){ //funktioniert auch als list
-//        final long HOUR = 3600*1000; // in milli-seconds.
-//        long timestartTMP = booking.getTimestart().getTime();
-//        timestartTMP=timestartTMP-HOUR;
-//        long timeendTMP = booking.getTimeend().getTime();
-//        timeendTMP=timeendTMP-HOUR;
-//        Date datetmp=new Date();
-//        datetmp.setTime(timeendTMP);
-//        booking.setTimeend(datetmp);
-//        datetmp.setTime(timestartTMP);
-//        booking.setTimestart(datetmp);
         return bookingRepository.save(booking);
     }
 
@@ -77,6 +67,7 @@ public class BookingService {
         return bookingRepository.findByEmployee(employee);
     }
 
+    // Holt alle Telefonnummern der Mitarbeiter. Achtet dabei darauf welcher gerade im Homeoffice ist oder welcher Platz reserviert ist
     @GetMapping
     public  List <Employee> getAllPhoneNumbersofEmployees (){
 
@@ -120,14 +111,13 @@ public class BookingService {
         return employeesInOffice;
     }
 
+    //Holt alle besetzten Arbeitsplätze die zum Moment der Abfrage besetzt sind
     @GetMapping
     public  List <Workplace> getCurrentTakenWorkplaces (){
 
         Date currentDate= new Date();
         List <Workplace> workplacesBooked= new ArrayList<>();
         List <Booking> bookings  = bookingRepository.findAll();
-
-
 
         for (int i = 0; i<bookings.size(); i++) {
             //System.out.println(i);
@@ -140,55 +130,37 @@ public class BookingService {
                     workplacesBooked.add(currentBooking.getWorkplace());
                 }
         }
-
-//            if (currentBooking.getTimestart().before(currentDate)){
-//                System.out.println("Startzeit vor Jetztzeit");
-//                if (currentBooking.getTimeend().after(currentDate)){
-//                    System.out.println("Endzeit nach Jetztzeit");
-//                    workplacesBooked.add(currentBooking.getWorkplace());
-//                }
-//            }
-
-
-//            if (workplacesBooked.isEmpty()){
-//            return null;
-//            }else{
         return workplacesBooked;
     }
 
+    // Holt alle Buchungen die derzeit laufen
     @GetMapping
     public List<Booking> getBlockedBookingsByOffice(long id){
         List <Booking> blockedBookings= new ArrayList<>();
         List <Booking> bookings  = bookingRepository.findAll();
-
         Date currentDate= new Date();
 
         for (Booking currentBooking:bookings) {
-
-
             if(currentBooking.getStatus().equals("akzeptiert") && (currentDate.before(currentBooking.getTimestart()) || currentDate.after(currentBooking.getTimeend()))){
-
                 if (currentBooking.getWorkplace().getOffice().getId().equals(id)) {
                     blockedBookings.add(currentBooking);
                 } else {
                     System.out.println("Arbeitsplatz nicht im Office: " + id);
                 }
             }
+            if(currentBooking.getStatus().equals("akzeptiert") && (currentDate.after(currentBooking.getTimeend()))){
+                currentBooking.setStatus("beendet");
+                bookingRepository.save(currentBooking);
+            }
         }
-
             return blockedBookings;
     }
+    // Holt alle besetzten Arbeitsplaetze eines Bueros
     @GetMapping
     public  List <Workplace> getCurrentTakenWorkplacesByOffice (long id){
-
         Date currentDate= new Date();
         List <Workplace> workplacesBooked= new ArrayList<>();
         List <Booking> bookings  = bookingRepository.findAll();
-
-
-
-
-
 
         for (int i = 0; i<bookings.size(); i++) {
             //System.out.println(i);
@@ -212,30 +184,8 @@ public class BookingService {
                 }
             }
         }
-
-
-//            if (currentBooking.getTimestart().before(currentDate)){
-//                System.out.println("Startzeit vor Jetztzeit");
-//                if (currentBooking.getTimeend().after(currentDate)){
-//                    System.out.println("Endzeit nach Jetztzeit");
-//                    workplacesBooked.add(currentBooking.getWorkplace());
-//                }
-//            }
-
-
-//            if (workplacesBooked.isEmpty()){
-//            return null;
-//            }else{
         return workplacesBooked;
     }
-
-
-//    @GetMapping
-//    public List <Booking> findByEmployeeName(String employeename){
-//        return bookingRepository.findByEmployeename(employeename);
-//    }
-
-
 
     public String deleteEmployee(long id){
         bookingRepository.deleteById(id);
@@ -351,6 +301,7 @@ public class BookingService {
                 System.out.println(currentDate.before(currentBooking.getTimeend()));
                 System.out.println(currentDate);
                 currentBooking.setTimeend(currentDate);
+                currentBooking.setStatus("beendet");
                 bookingRepository.save(currentBooking);
                 return currentBooking;
             }
@@ -380,21 +331,6 @@ public class BookingService {
                 return null;
             }
         }
-
         return bookingRepository.save(booking);
     }
-
-
-/*    @Override
-    public ResponseEntity<Booking> updateBookingById(Long id, Booking booking){
-
-        Booking myBooking = bookingRepository.findById(id).get();
-
-        myBooking.setStatus(booking.getStatus());
-
-
-        Booking updatedBooking = bookingRepository.save(myBooking);
-        return ResponseEntity.ok(updatedBooking);
-
-    }*/
 }

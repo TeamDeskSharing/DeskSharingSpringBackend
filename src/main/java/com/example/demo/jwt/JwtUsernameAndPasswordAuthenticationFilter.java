@@ -75,7 +75,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
                 .compact();
 
        /* response.addHeader(jwtConfig.getAuthorizationHeader(), jwtConfig.getTokenPrefix() + token);*/
-            String myToken = new String();
+            String myToken = "";
             myToken = token;
             response.setContentType("application/json");
             new ObjectMapper().writeValue(response.getOutputStream(),myToken);

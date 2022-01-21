@@ -11,6 +11,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @NoArgsConstructor
+//Name der DB-Tabelle
 @Table(name = "t_building")
 public class Building {
 
@@ -24,6 +25,7 @@ public class Building {
             strategy = GenerationType.SEQUENCE,
             generator = "building_sequence"
     )
+    //Variablen
     @Id
     private Long id;
 
@@ -33,8 +35,6 @@ public class Building {
         this.id = id;
         this.description = description;
     }
-
-
 
     public Long getId() {
         return id;

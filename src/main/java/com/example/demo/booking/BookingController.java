@@ -17,7 +17,6 @@ public class BookingController {
     @Autowired
     private BookingService bookingService;
 
-
     @GetMapping("/getAllBookings")
     public List<Booking> findAllBookings() {
         return bookingService.getAllBookings();
@@ -37,15 +36,16 @@ public class BookingController {
     public List<Booking> getBookingsByName(@PathVariable long id) {
         return bookingService.getBookingByEmployee(id);
     }
-
     @GetMapping("/findBookingsByUsername/{username}")
     public List<Booking> getBookingByUsername(@PathVariable String username) {
         return bookingService.getBookingByUsername(username);
     }
+
     @GetMapping("/getWorkplaceByBookingID/{id}")
     public Workplace getWorkplaceByBookingID(@PathVariable long id) {
         return bookingService.getWorkplaceByBookingID(id);
     }
+
     @GetMapping("/getCurrentPhoneNumberofEmployees")
     public List <Employee> getAllPhoneNumbersofEmployees() {
         return bookingService.getAllPhoneNumbersofEmployees();
@@ -65,10 +65,10 @@ public class BookingController {
     public List<Workplace> getCurrentTakenWorkplacesByOffice(@PathVariable Long id) {
         return bookingService.getCurrentTakenWorkplacesByOffice(id);
     }
+
     @GetMapping("/getBlockedBookingsByOffice/{id}")
         public List<Booking> getBlockedBookingsByOffice(@PathVariable Long id){
             return bookingService.getBlockedBookingsByOffice(id);
-
     }
 
     @PutMapping("/update")
@@ -80,10 +80,12 @@ public class BookingController {
     public Booking updateBookingbyIDSetStatusAkzeptiert(@PathVariable Long id){
         return bookingService.updateBookingbyIDSetStatusAkzeptiert(id);
     }
+
     @PutMapping("/updateAbgelehnt/{id}")
     public Booking updateBookingbyIDSetStatusAbgelehnt(@PathVariable Long id){
         return bookingService.updateBookingbyIDSetStatusAbgelehnt(id);
     }
+
     @PutMapping("/updateSchwebend/{id}")
     public Booking updateBookingbyIDSetStatusSchwebend(@PathVariable Long id){
         return bookingService.updateBookingbyIDSetStatusSchwebend(id);
@@ -113,9 +115,4 @@ public class BookingController {
     public Booking saveBookingwithids(@RequestBody Booking booking){
         return bookingService.saveBookingwithids(booking);
     }
-
-
-
-
-
 }
