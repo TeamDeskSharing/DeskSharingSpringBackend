@@ -67,7 +67,16 @@ public class BookingService {
     @GetMapping
     public List<Booking> getBookingByUsername(String username) {
         Employee employee = employeeRepository.findByUsername(username);
-        return bookingRepository.findByEmployee(employee);
+        List<Booking> bookings =bookingRepository.findByEmployee(employee);
+        Date currentDate= new Date();
+
+        for (Booking currentBooking:bookings) {
+            if (currentDate.after(currentBooking.getTimeend())){
+                currentBooking.setStatus("beendet");
+                bookingRepository.save(currentBooking);
+            }
+        }
+        return bookings;
     }
 
     public List<Booking> getBookingByEmployee(long id) {
