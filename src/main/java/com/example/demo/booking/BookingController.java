@@ -4,6 +4,7 @@ import com.example.demo.building.Workplace;
 import com.example.demo.employee.Employee;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -36,7 +37,9 @@ public class BookingController {
     public List<Booking> getBookingsByName(@PathVariable long id) {
         return bookingService.getBookingByEmployee(id);
     }
+
     @GetMapping("/findBookingsByUsername/{username}")
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMINTRAINEE','ROLE_EMPLOYEE')")
     public List<Booking> getBookingByUsername(@PathVariable String username) {
         return bookingService.getBookingByUsername(username);
     }

@@ -54,8 +54,11 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .addFilterAfter(new JwtTokenVerifier(secretKey, jwtConfig),JwtUsernameAndPasswordAuthenticationFilter.class)
                 .authorizeRequests()
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
-                .antMatchers("/api/**").hasRole(EMPLOYEE.name())
+
+                .antMatchers("/api/v1/booking/getCurrentPhoneNumberofEmployees").permitAll()
+                .antMatchers("/api/v1/**").hasRole(EMPLOYEE.name())
                 .antMatchers("/api/**").hasRole(ADMIN.name())
+
                 .anyRequest()
                 .authenticated();
     }
