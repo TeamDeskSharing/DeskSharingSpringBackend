@@ -38,7 +38,7 @@ public class BookingController {
         return bookingService.getBookingByEmployee(id);
     }
 
-    @GetMapping("/findBookingsByUsername/{username}")
+    @GetMapping("/e1/findBookingsByUsername/{username}")
     @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMINTRAINEE','ROLE_EMPLOYEE')")
     public List<Booking> getBookingByUsername(@PathVariable String username) {
         return bookingService.getBookingByUsername(username);
@@ -69,7 +69,7 @@ public class BookingController {
         return bookingService.getCurrentTakenWorkplacesByOffice(id);
     }
 
-    @GetMapping("/getBlockedBookingsByOffice/{id}")
+    @GetMapping("/e1/getBlockedBookingsByOffice/{id}")
         public List<Booking> getBlockedBookingsByOffice(@PathVariable Long id){
             return bookingService.getBlockedBookingsByOffice(id);
     }
@@ -84,7 +84,7 @@ public class BookingController {
         return bookingService.updateBookingbyIDSetStatusAkzeptiert(id);
     }
 
-    @PutMapping("/updateAbgelehnt/{id}")
+    @PutMapping("/e1/updateAbgelehnt/{id}")
     public Booking updateBookingbyIDSetStatusAbgelehnt(@PathVariable Long id){
         return bookingService.updateBookingbyIDSetStatusAbgelehnt(id);
     }
@@ -114,7 +114,8 @@ public class BookingController {
         return bookingService.saveBooking(booking);
     }
 
-    @PostMapping("/saveBookingWithIDs/")
+
+    @PostMapping("/e1/saveBookingWithIDs/")
     public Booking saveBookingwithids(@RequestBody Booking booking){
         return bookingService.saveBookingwithids(booking);
     }

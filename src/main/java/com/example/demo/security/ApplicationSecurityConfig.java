@@ -56,7 +56,10 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/", "index", "/css/*", "/js/*").permitAll()
 
                 .antMatchers("/api/v1/booking/getCurrentPhoneNumberofEmployees").permitAll()
-                .antMatchers("/api/v1/**").hasRole(EMPLOYEE.name())
+
+                .antMatchers("/api/v1/booking/e1/**").hasRole(EMPLOYEE.name())
+                .antMatchers("/api/v1/employee/e1/**").hasRole(EMPLOYEE.name())
+
                 .antMatchers("/api/**").hasRole(ADMIN.name())
 
                 .anyRequest()
