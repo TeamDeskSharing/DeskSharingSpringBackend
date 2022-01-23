@@ -6,4 +6,6 @@ public interface ApplicationUserDao {
 
     Optional<ApplicationUser> selectApplicationUserByUsername(String username);
 
+/*    Optional<User> selectApplicationUserByUsername(String username);*/
+
 }

@@ -1,11 +1,15 @@
 package com.example.demo.auth;
 
+import com.example.demo.security.ApplicationUserRole;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
+import java.util.Collection;
 import java.util.Set;
 
 @Entity
@@ -13,7 +17,8 @@ import java.util.Set;
 @Setter
 //Name der DB-Tabelle
 @Table(name = "t_User")
-public class User {
+public class User implements UserDetails {
+
     @SequenceGenerator(
             name = "user_sequence",
             sequenceName = "user_sequence",
@@ -40,21 +45,25 @@ public class User {
     private boolean isCredentialsNonExpired;
     private boolean isEnabled;
 
+    private Boolean isAdmin;
+
+
+
+
     protected User() {}
 
-    public User(String username,
-                String password,
-                boolean isAccountNonExpired,
-                boolean isAccountNonLocked,
-                boolean isCredentialsNonExpired,
-                boolean isEnabled) {
+    public User(Long id, String username, String password, boolean isAccountNonExpired, boolean isAccountNonLocked, boolean isCredentialsNonExpired, boolean isEnabled, Boolean isAdmin) {
+        this.id = id;
         this.username = username;
         this.password = password;
         this.isAccountNonExpired = isAccountNonExpired;
         this.isAccountNonLocked = isAccountNonLocked;
         this.isCredentialsNonExpired = isCredentialsNonExpired;
         this.isEnabled = isEnabled;
+        this.isAdmin = isAdmin;
     }
+
+
 
     public String getUsername() {
         return username;
@@ -62,6 +71,11 @@ public class User {
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    @Override
+    public Collection<? extends GrantedAuthority> getAuthorities() {
+        return null;
     }
 
     public String getPassword() {
@@ -102,5 +116,22 @@ public class User {
 
     public void setEnabled(boolean enabled) {
         isEnabled = enabled;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+
+    public Boolean getAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        isAdmin = admin;
     }
 }

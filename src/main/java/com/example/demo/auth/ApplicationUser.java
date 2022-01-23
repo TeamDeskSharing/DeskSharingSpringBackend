@@ -23,7 +23,25 @@ public class ApplicationUser extends User implements UserDetails {
                            boolean isAccountNonLocked,
                            boolean isCredentialsNonExpired,
                            boolean isEnabled) {
-        super(username,password,isAccountNonExpired,isAccountNonLocked,isCredentialsNonExpired,isEnabled);
+//        super(username,password,isAccountNonExpired,isAccountNonLocked,isCredentialsNonExpired,isEnabled);
+        this.grantedAuthorities = grantedAuthorities;
+    }
+
+    public ApplicationUser(User user){
+    }
+    public ApplicationUser(                           Set<? extends GrantedAuthority> grantedAuthorities){
+        this.grantedAuthorities = grantedAuthorities;
+    }
+
+    public ApplicationUser() {
+
+    }
+
+    public Set<? extends GrantedAuthority> getGrantedAuthorities() {
+        return grantedAuthorities;
+    }
+
+    public void setGrantedAuthorities(Set<? extends GrantedAuthority> grantedAuthorities) {
         this.grantedAuthorities = grantedAuthorities;
     }
 
