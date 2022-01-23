@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class ApplicationUserService implements UserDetailsService {
 
+    @Autowired
     private final ApplicationUserDao applicationUserDao;
 
     @Autowired

@@ -6,6 +6,7 @@ import com.example.demo.jwt.JwtTokenVerifier;
 import com.example.demo.jwt.JwtUsernameAndPasswordAuthenticationFilter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -14,6 +15,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.config.http.SessionCreationPolicy;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import javax.crypto.SecretKey;
@@ -30,6 +32,9 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
     private final ApplicationUserService applicationUserService;
     private final SecretKey secretKey;
     private final JwtConfig jwtConfig;
+
+//    @Autowired
+//    private UserDetailsService userDetailsService;
 
     @Autowired
     public ApplicationSecurityConfig(PasswordEncoder passwordEncoder,
