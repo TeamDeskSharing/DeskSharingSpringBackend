@@ -64,6 +64,7 @@ public class BookingService {
         Booking booking1  = bookingRepository.findById(id).orElse(null);
         return booking1.getWorkplace();
     }
+
     @GetMapping
     public List<Booking> getBookingByUsername(String username) {
         Employee employee = employeeRepository.findByUsername(username);
@@ -182,6 +183,7 @@ public class BookingService {
         }
             return blockedBookings;
     }
+
     // Holt alle besetzten Arbeitsplaetze eines Bueros
     @GetMapping
     public  List <Workplace> getCurrentTakenWorkplacesByOffice (long id){
@@ -310,7 +312,6 @@ public class BookingService {
         List <Booking> bookinstemp = bookingRepository.findByWorkplace(bookingtmp.getWorkplace());
 
         for (Booking currentBooking:bookinstemp) {
-//            Booking currentBooking= bookinstemp.get(i);
             boolean ueberschneidung = bookingtmp.getTimeend().compareTo(currentBooking.getTimestart()) < 0
                     || currentBooking.getTimeend().compareTo(bookingtmp.getTimeend()) < 0;
             if (ueberschneidung == false){

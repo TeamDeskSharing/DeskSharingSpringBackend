@@ -1,16 +1,8 @@
 package com.example.demo.auth;
-
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
-
-import javax.persistence.*;
-import javax.validation.constraints.NotEmpty;
 import java.util.Collection;
 import java.util.Set;
-
 
 public class ApplicationUser extends User implements UserDetails {
 
@@ -23,7 +15,6 @@ public class ApplicationUser extends User implements UserDetails {
                            boolean isAccountNonLocked,
                            boolean isCredentialsNonExpired,
                            boolean isEnabled) {
-//        super(username,password,isAccountNonExpired,isAccountNonLocked,isCredentialsNonExpired,isEnabled);
         this.grantedAuthorities = grantedAuthorities;
     }
 
@@ -33,9 +24,7 @@ public class ApplicationUser extends User implements UserDetails {
         this.grantedAuthorities = grantedAuthorities;
     }
 
-    public ApplicationUser() {
-
-    }
+    public ApplicationUser() {}
 
     public Set<? extends GrantedAuthority> getGrantedAuthorities() {
         return grantedAuthorities;

@@ -51,7 +51,6 @@ public class Booking {
     public Booking(Long id, Date timestart, Date timeend, String status) {
 
     }
-
     //Getter Setter
 
     public Long getId() {

@@ -33,19 +33,14 @@ public class FakeApplicationUserDaoService implements ApplicationUserDao {
                 .findFirst();
     }
 
-
     private List <ApplicationUser> getApplicationUsers (){
 
         List<User> users = userRepository.findAll();
-
         List<ApplicationUser> applicationUsers = new ArrayList<>();
-
 
         for (User user : users) {
 
-
-
-            ApplicationUser appUser =  new ApplicationUser();
+          ApplicationUser appUser =  new ApplicationUser();
           appUser.setUsername(user.getUsername());
 
             appUser.setPassword(user.getPassword());
@@ -56,19 +51,13 @@ public class FakeApplicationUserDaoService implements ApplicationUserDao {
 
           } else {
               appUser.setGrantedAuthorities(EMPLOYEE.getGrantedAuthorities());
-
           }
           appUser.setAccountNonExpired(true);
           appUser.setAccountNonLocked(true);
           appUser.setCredentialsNonExpired(true);
           appUser.setEnabled(true);
-
-
           applicationUsers.add(appUser);
-
-
         }
-
         return applicationUsers;
     }
 

@@ -44,11 +44,7 @@ public class User implements UserDetails {
     private boolean isAccountNonLocked;
     private boolean isCredentialsNonExpired;
     private boolean isEnabled;
-
     private Boolean isAdmin;
-
-
-
 
     protected User() {}
 
@@ -62,8 +58,6 @@ public class User implements UserDetails {
         this.isEnabled = isEnabled;
         this.isAdmin = isAdmin;
     }
-
-
 
     public String getUsername() {
         return username;
@@ -125,7 +119,6 @@ public class User implements UserDetails {
     public void setId(Long id) {
         this.id = id;
     }
-
 
     public Boolean getAdmin() {
         return isAdmin;

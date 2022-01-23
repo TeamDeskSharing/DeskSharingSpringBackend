@@ -15,7 +15,6 @@ import java.util.Objects;
 @Table(name = "t_building")
 public class Building {
 
-
     @SequenceGenerator(
             name = "building_sequence",
             sequenceName = "building_sequence",
