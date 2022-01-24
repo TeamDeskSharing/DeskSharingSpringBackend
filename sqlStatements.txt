@@ -111,3 +111,37 @@ VALUES (29,'651428682',9);
 
 INSERT INTO t_workplace
 VALUES (30,'731290102',9);
+
+INSERT INTO t_employee (id,email,firstname,homeoffice,lastname,phonenumber,currentphonenumber,username)
+VALUES (10,'jonathan.gurk@hs-osnabrueck.de','Jonathan',0,'Gurk',1111111,0,'jonathangurk');
+
+INSERT INTO t_employee (id,email,firstname,homeoffice,lastname,phonenumber,currentphonenumber,username)
+VALUES (12,'mohamad.halawi@hs-osnabrueck.de','Mohamad',0,'Halawi',1111111,0,'mohamadhalawi');
+
+INSERT INTO t_employee (id,email,firstname,homeoffice,lastname,phonenumber,currentphonenumber,username)
+VALUES (13,'florian.funke@hs-osnabrueck.de','Florian',1,'Funke',1111111,0,'florianfunke');
+
+INSERT INTO t_employee (id,email,firstname,homeoffice,lastname,phonenumber,currentphonenumber,username)
+VALUES (14,'artur.pfeifer@hs-osnabrueck.de','Artur',1,'Pfeifer',1111111,0,'arturpfeifer');
+
+INSERT INTO t_employee (id,email,firstname,homeoffice,lastname,phonenumber,currentphonenumber,username)
+VALUES (18,'','Test',1,'Test',12344566,0,'test');
+
+insert into t_user(id,username,password,is_account_non_expired,is_account_non_locked,is_credentials_non_expired,is_enabled,is_admin)
+values (1,'admin','password',1,1,1,1,1);
+
+insert into t_user(id,username,password,is_account_non_expired,is_account_non_locked,is_credentials_non_expired,is_enabled,is_admin)
+values (2,'jonathangurk','$2a$12$M2qERZNSEcXCu/IjqOmOxuD4q4apukHOPbZqf3yEka0W5AF5jhnfS',1,1,1,1,0);
+
+insert into t_user(id,username,password,is_account_non_expired,is_account_non_locked,is_credentials_non_expired,is_enabled,is_admin)
+values (3,'mohamadhalawi','$2a$12$M2qERZNSEcXCu/IjqOmOxuD4q4apukHOPbZqf3yEka0W5AF5jhnfS',1,1,1,1,0);
+
+insert into t_user(id,username,password,is_account_non_expired,is_account_non_locked,is_credentials_non_expired,is_enabled,is_admin)
+values (4,'florianfunke','$2a$12$M2qERZNSEcXCu/IjqOmOxuD4q4apukHOPbZqf3yEka0W5AF5jhnfS',1,1,1,1,0);
+
+insert into t_user(id,username,password,is_account_non_expired,is_account_non_locked,is_credentials_non_expired,is_enabled,is_admin)
+values (5,'arturpfeifer','$2a$12$M2qERZNSEcXCu/IjqOmOxuD4q4apukHOPbZqf3yEka0W5AF5jhnfS',1,1,1,1,0);
+
+insert into t_user(id,username,password,is_account_non_expired,is_account_non_locked,is_credentials_non_expired,is_enabled,is_admin)
+values (6,'test','$2a$12$M2qERZNSEcXCu/IjqOmOxuD4q4apukHOPbZqf3yEka0W5AF5jhnfS',1,1,1,1,0);
+
