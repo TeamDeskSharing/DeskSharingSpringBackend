@@ -11,6 +11,8 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+
+import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -92,6 +94,10 @@ public class BookingService {
         List <Employee> employeesAll = employeeRepository.findAll();
         List <Booking> bookings  = bookingRepository.findAll();
 
+        for (Employee employee: employeesAll) {
+            employee.setCurrentphonenumber(employee.getPhonenumber());
+            employeeRepository.save(employee);
+        }
         for (Booking currentBooking:bookings) {
             System.out.println(currentBooking);
             if (currentBooking.getStatus().equals("akzeptiert")) {
