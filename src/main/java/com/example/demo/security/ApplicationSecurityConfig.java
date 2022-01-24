@@ -65,6 +65,7 @@ public class ApplicationSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/api/v1/booking/e1/**").hasRole(EMPLOYEE.name())
                 .antMatchers("/api/v1/employee/e1/**").hasRole(EMPLOYEE.name())
 
+
                 .antMatchers("/api/**").hasRole(ADMIN.name())
 
                 .anyRequest()

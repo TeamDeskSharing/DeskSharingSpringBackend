@@ -1,10 +1,9 @@
 package com.example.demo.booking;
 
-import com.example.demo.building.Workplace;
+import com.example.demo.building.workplace.Workplace;
 import com.example.demo.employee.Employee;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -12,7 +11,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/booking")
 @AllArgsConstructor
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "*")
 public class BookingController {
 
     @Autowired
@@ -24,7 +23,6 @@ public class BookingController {
     }
 
     @GetMapping("/e1/findBookingsByUsername/{username}")
-    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_ADMINTRAINEE','ROLE_EMPLOYEE')")
     public List<Booking> getBookingByUsername(@PathVariable String username) {
         return bookingService.getBookingByUsername(username);
     }

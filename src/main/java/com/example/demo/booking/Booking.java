@@ -1,14 +1,12 @@
 package com.example.demo.booking;
 
-import ch.qos.logback.core.html.NOPThrowableRenderer;
-import com.example.demo.building.Workplace;
+import com.example.demo.building.workplace.Workplace;
 import com.example.demo.employee.Employee;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.Objects;
 

@@ -9,6 +9,8 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/employee")
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
+
 public class EmployeeController {
 
 

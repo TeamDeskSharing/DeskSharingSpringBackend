@@ -1,4 +1,4 @@
-package com.example.demo.building;
+package com.example.demo.building.workplace;
 
 
 import com.example.demo.booking.Booking;
@@ -14,7 +14,10 @@ import java.util.List;
 @Service("api/v1/workplaces")
 public class WorkplaceService {
 
-    @Autowired // new
+
+    /*MÖGLICHE ERWEITERUNG*/
+
+/*    @Autowired // new
     private final WorkplaceRepository workplaceRepository;
 
     @GetMapping
@@ -57,6 +60,6 @@ public class WorkplaceService {
         //bookings.add(booking);
         //workplace1.setBookings(bookings);
         return workplaceRepository.save(workplace1);
-    }
+    }*/
 
 }

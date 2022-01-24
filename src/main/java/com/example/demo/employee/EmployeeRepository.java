@@ -8,23 +8,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-/*@Repository
-@Transactional(readOnly = true)*/
+
 public interface EmployeeRepository
         extends JpaRepository<Employee, Long> {
-
-/*
-    Optional<Employee> findByEmail(String email);
-
-    @Transactional
-    @Modifying
-    @Query("UPDATE Employee e " +
-            "SET e.enabled = TRUE WHERE e.email = ?1")
-    int enableAppUser(String email);
-*/
-
-
-    //customized CRUD methods
 
     Employee findByEmail(String email);
     Employee findByUsername(String username);

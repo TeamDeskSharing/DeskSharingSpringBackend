@@ -1,4 +1,4 @@
-package com.example.demo.building;
+package com.example.demo.building.building;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,31 +12,28 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 //Name der DB-Tabelle
-@Table(name = "t_office")
-public class Office {
+@Table(name = "t_building")
+public class Building {
 
     @SequenceGenerator(
-            name = "office_sequence",
-            sequenceName = "office_sequence",
+            name = "building_sequence",
+            sequenceName = "building_sequence",
             allocationSize = 1
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "office_sequence"
+            generator = "building_sequence"
     )
     //Variablen
     @Id
     private Long id;
+
     private String description;
 
-    public Office(Long id, String description) {
+    public Building(Long id, String description, String lastName, String email) {
         this.id = id;
         this.description = description;
     }
-
-    @ManyToOne()
-    @JoinColumn(name="buildingid", nullable=true)
-    private Building building=null;
 
     public Long getId() {
         return id;
@@ -46,12 +43,20 @@ public class Office {
         this.id = id;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Office office = (Office) o;
-        return Objects.equals(id, office.id) && Objects.equals(description, office.description);
+        Building building = (Building) o;
+        return Objects.equals(id, building.id) && Objects.equals(description, building.description);
     }
 
     @Override

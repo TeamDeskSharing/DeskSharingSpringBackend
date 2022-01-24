@@ -1,4 +1,4 @@
-package com.example.demo.building;
+package com.example.demo.building.workplace;
 
 import com.example.demo.booking.Booking;
 import lombok.AllArgsConstructor;
@@ -10,9 +10,15 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/v1/workplace")
 @AllArgsConstructor
+@CrossOrigin(origins = "*")
+
 public class WorkplaceController {
 
-    @Autowired
+
+    /*MÖGLICHE ERWEITERUNG*/
+
+
+/*    @Autowired
     private WorkplaceService workplaceService;
 
     @GetMapping("/getAllWorkplaces")
@@ -38,6 +44,6 @@ public class WorkplaceController {
     @PutMapping("/addBooking/{id}")
     public Workplace addBooking(@PathVariable Long id,@RequestBody Booking booking){
         return workplaceService.addBooking(id,booking);
-    }
+    }*/
 
 }

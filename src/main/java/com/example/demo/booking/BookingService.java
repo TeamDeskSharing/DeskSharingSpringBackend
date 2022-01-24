@@ -1,7 +1,7 @@
 package com.example.demo.booking;
 
-import com.example.demo.building.Workplace;
-import com.example.demo.building.WorkplaceRepository;
+import com.example.demo.building.workplace.Workplace;
+import com.example.demo.building.workplace.WorkplaceRepository;
 import com.example.demo.employee.Employee;
 import com.example.demo.employee.EmployeeRepository;
 import lombok.AllArgsConstructor;
@@ -9,17 +9,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 
-import javax.validation.constraints.Null;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 @AllArgsConstructor
 @Service("api/v1/booking")
-@CrossOrigin(origins = "http://localhost:3000", maxAge = 3600)
+@CrossOrigin(origins = "*", maxAge = 3600)
 
 public class BookingService {
 

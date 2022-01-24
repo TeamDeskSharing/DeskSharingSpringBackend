@@ -1,4 +1,4 @@
-package com.example.demo.building;
+package com.example.demo.building.building;
 
 import com.example.demo.employee.Employee;
 import com.example.demo.employee.EmployeeRepository;
@@ -13,7 +13,11 @@ import java.util.List;
 @AllArgsConstructor
 @Service("api/v1/buildings")
 public class BuildingService {
-    @Autowired // new
+
+    /*MÖGLICHE ERWEITERUNG*/
+
+
+/*    @Autowired // new
     private final BuildingRepository buildingRepository;
 
     @GetMapping
@@ -45,6 +49,6 @@ public class BuildingService {
         Building building1  = buildingRepository.findById(building.getId()).orElse(null);
         building1.setDescription(building.getDescription());
         return buildingRepository.save(building1);
-    }
+    }*/
 }
 

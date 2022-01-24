@@ -1,5 +1,6 @@
-package com.example.demo.building;
+package com.example.demo.building.workplace;
 
+import com.example.demo.building.office.Office;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

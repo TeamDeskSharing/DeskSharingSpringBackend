@@ -1,6 +1,6 @@
 package com.example.demo.booking;
 
-import com.example.demo.building.Workplace;
+import com.example.demo.building.workplace.Workplace;
 import com.example.demo.employee.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;

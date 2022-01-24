@@ -1,4 +1,4 @@
-package com.example.demo.building;
+package com.example.demo.building.office;
 
 import com.example.demo.employee.Employee;
 import com.example.demo.employee.EmployeeRepository;
@@ -14,7 +14,10 @@ import java.util.List;
 @Service("api/v1/offices")
 public class OfficeService {
 
-    @Autowired // new
+
+    /*MÖGLICHE ERWEITERUNG*/
+
+/*    @Autowired // new
     private final OfficeRepository officeRepository;
 
     @GetMapping
@@ -46,5 +49,5 @@ public class OfficeService {
         Office office1  = officeRepository.findById(office.getId()).orElse(null);
         office1.setDescription(office.getDescription());
         return officeRepository.save(office1);
-    }
+    }*/
 }

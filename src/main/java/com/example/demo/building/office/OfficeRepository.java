@@ -1,6 +1,5 @@
-package com.example.demo.building;
+package com.example.demo.building.office;
 
-import com.example.demo.employee.Employee;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface OfficeRepository extends JpaRepository<Office, Long> {
